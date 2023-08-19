@@ -1,15 +1,24 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FarmSwapTextField extends StatelessWidget {
   final String hintText;
-  const FarmSwapTextField({super.key, required this.hintText});
+  final VoidCallback onPress;
+  String? inputIcon;
+  FarmSwapTextField({
+    super.key,
+    required this.hintText,
+    required this.onPress,
+    this.inputIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (value) => onPress,
       selectionHeightStyle: BoxHeightStyle.includeLineSpacingBottom,
       decoration: InputDecoration(
         contentPadding:
@@ -25,6 +34,16 @@ class FarmSwapTextField extends StatelessWidget {
             letterSpacing: 0.50,
           ),
         ),
+        prefixIcon: inputIcon != null
+            ? Container(
+                padding: const EdgeInsets.all(10),
+                child: SvgPicture.asset(
+                  inputIcon!,
+                  height: 20,
+                  width: 20,
+                ),
+              )
+            : null,
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(width: 0.50, color: Color(0xFFF4F4F4)),
           borderRadius: BorderRadius.circular(15),

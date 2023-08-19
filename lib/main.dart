@@ -1,5 +1,8 @@
 import 'package:farmswap_v2/src/features/authentication/presentation/onboarding_screen2.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
+import 'package:farmswap_v2/src/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'src/features/authentication/presentation/onboarding_screen.dart';
 
 void main() {
@@ -17,7 +20,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const OnboardingScreen1(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => UserProvider()),
+        ],
+        child: const RegisterScreen(),
+      ),
     );
   }
 }

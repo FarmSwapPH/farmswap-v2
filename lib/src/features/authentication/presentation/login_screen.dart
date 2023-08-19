@@ -1,5 +1,6 @@
 import 'package:farmswap_v2/src/common_widgets/farmswap_social_button.dart';
 import 'package:farmswap_v2/src/common_widgets/farmswap_text_field.dart';
+import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +14,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -45,26 +47,22 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               Column(
                 children: [
-                  Text(
-                    'Login To Your Account',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Color(0xFF09041B),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
+                  farmSwapFont(text: "Login To Your Account", size: 20),
+                  const SizedBox(height: 20),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: FarmSwapTextField(
+                      hintText: "Email",
+                      onPress: () {},
                     ),
                   ),
                   const SizedBox(height: 20),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const FarmSwapTextField(hintText: "Email"),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const FarmSwapTextField(hintText: "Password"),
+                    child: FarmSwapTextField(
+                      hintText: "Password",
+                      onPress: () {},
+                    ),
                   )
                 ],
               ),
