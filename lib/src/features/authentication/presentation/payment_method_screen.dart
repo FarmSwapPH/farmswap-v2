@@ -1,0 +1,148 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../common_widgets/farmswap_primary_button.dart';
+import '../../../common_widgets/farmswap_text_field.dart';
+import '../../../constants/typography.dart';
+import 'splash_screen.dart';
+
+class PaymentMethodScreen extends StatelessWidget {
+  const PaymentMethodScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                top: 0,
+                right: 0,
+                child: SvgPicture.asset(
+                  "assets/svg/bio/bio-pattern.svg",
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                child: Container(
+                  padding: const EdgeInsets.all(25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          borderRadius: BorderRadius.circular(15),
+                          child: Container(
+                            height: 42,
+                            width: 42,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(133, 255, 144, 18),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Align(
+                              child: SvgPicture.asset(
+                                "assets/svg/auth/back-arrow.svg",
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: height * 0.024),
+                      screenTitle(value: "Payment Method"),
+                      SizedBox(height: height * 0.024),
+                      baseText(
+                        value:
+                            "This data will be displayed in your\naccount profile for security",
+                      ),
+                      SizedBox(height: height * 0.024),
+                      PaymentCard(
+                        height: height,
+                        width: width,
+                        paymentPath: "assets/images/payment badges/gpay.png",
+                      ),
+                      SizedBox(height: height * 0.024),
+                      PaymentCard(
+                        height: height,
+                        width: width,
+                        paymentPath: "assets/images/payment badges/gcash.png",
+                      ),
+                      SizedBox(height: height * 0.024),
+                      PaymentCard(
+                        height: height,
+                        width: width,
+                        paymentPath: "assets/images/payment badges/maya.png",
+                      ),
+                      const Spacer(),
+                      const Center(
+                        child: FarmSwapPrimaryButton(
+                          buttonTitle: "Next",
+                          nextScreen: SplashScreen(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PaymentCard extends StatelessWidget {
+  const PaymentCard({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.paymentPath,
+  });
+
+  final double height;
+  final double width;
+  final String paymentPath;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(22),
+        child: Container(
+          height: height * 0.089,
+          width: width,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(22),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x115A6CEA),
+                blurRadius: 50,
+                offset: Offset(12, 26),
+                spreadRadius: 0,
+              )
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Image.asset(
+              paymentPath,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

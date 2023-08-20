@@ -9,6 +9,7 @@ class FarmSwapTextField extends StatefulWidget {
   final VoidCallback onPress;
   String? inputIcon;
   bool isPassword;
+  bool isNumber;
 
   FarmSwapTextField({
     super.key,
@@ -16,6 +17,7 @@ class FarmSwapTextField extends StatefulWidget {
     required this.onPress,
     this.inputIcon,
     this.isPassword = false,
+    this.isNumber = false,
   });
 
   @override
@@ -28,6 +30,8 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
   Widget build(BuildContext context) {
     return TextField(
       obscureText: viewPassword! ? false : widget.isPassword,
+      keyboardType:
+          widget.isNumber == true ? TextInputType.number : TextInputType.text,
       onChanged: (value) => widget.onPress,
       selectionHeightStyle: BoxHeightStyle.includeLineSpacingBottom,
       decoration: InputDecoration(
