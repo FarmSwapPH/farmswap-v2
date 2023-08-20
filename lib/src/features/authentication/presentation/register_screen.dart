@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../common_widgets/farmswap_primary_button.dart';
-import '../../../common_widgets/farmswap_social_button.dart';
 import '../../../common_widgets/farmswap_text_field.dart';
 import '../../../constants/typography.dart';
 import 'splash_screen.dart';
@@ -16,8 +15,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool agreeToTerms = false;
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -77,14 +78,62 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: FarmSwapTextField(
                       hintText: "Password",
                       onPress: () {},
-                      inputIcon: "assets/svg/auth/Message.svg",
+                      inputIcon: "assets/svg/auth/Lock.svg",
+                      isPassword: true,
                     ),
                   )
                 ],
               ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    agreeToTerms = !agreeToTerms;
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  width: width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 22,
+                        height: 22,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                            color: agreeToTerms == true
+                                ? const Color(0xFF53E78B)
+                                : Colors.grey,
+                          ),
+                          color: agreeToTerms == true
+                              ? const Color(0xFF53E78B)
+                              : Colors.white,
+                        ),
+                        child: Align(
+                          child: SvgPicture.asset("assets/svg/auth/check.svg"),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        "Agree to terms & conditions",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Color(0xFF3B3B3B),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.50,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(height: 30),
               const FarmSwapPrimaryButton(
-                buttonTitle: "Login",
+                buttonTitle: "Create Account",
                 nextScreen: SplashScreen(),
               ),
               const SizedBox(height: 20),
