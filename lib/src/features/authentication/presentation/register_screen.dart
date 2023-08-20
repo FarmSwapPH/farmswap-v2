@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               const FarmSwapPrimaryButton(
                 buttonTitle: "Create Account",
                 nextScreen: SplashScreen(),
