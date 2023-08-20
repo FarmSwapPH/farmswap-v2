@@ -4,28 +4,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FarmSwapTextField extends StatelessWidget {
+class FarmSwapTextField extends StatefulWidget {
   final String hintText;
   final VoidCallback onPress;
   String? inputIcon;
+  bool isPassword;
+
   FarmSwapTextField({
     super.key,
     required this.hintText,
     required this.onPress,
     this.inputIcon,
+    this.isPassword = false,
   });
 
   @override
+  State<FarmSwapTextField> createState() => _FarmSwapTextFieldState();
+}
+
+class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
+  bool? viewPassword = false;
+  @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: (value) => onPress,
+      obscureText: viewPassword! ? false : widget.isPassword,
+      onChanged: (value) => widget.onPress,
       selectionHeightStyle: BoxHeightStyle.includeLineSpacingBottom,
       decoration: InputDecoration(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         filled: true,
         fillColor: Colors.white,
-        hintText: hintText,
+        hintText: widget.hintText,
         hintStyle: GoogleFonts.poppins(
           textStyle: const TextStyle(
             color: Color(0xFF3B3B3B),
@@ -34,13 +44,26 @@ class FarmSwapTextField extends StatelessWidget {
             letterSpacing: 0.50,
           ),
         ),
-        prefixIcon: inputIcon != null
+        prefixIcon: widget.inputIcon != null
             ? Container(
                 padding: const EdgeInsets.all(10),
                 child: SvgPicture.asset(
-                  inputIcon!,
+                  widget.inputIcon!,
                   height: 20,
                   width: 20,
+                ),
+              )
+            : null,
+        suffixIcon: widget.isPassword == true
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    viewPassword = !viewPassword!;
+                  });
+                },
+                icon: Icon(
+                  !viewPassword! ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.grey,
                 ),
               )
             : null,
