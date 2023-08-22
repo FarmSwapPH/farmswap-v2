@@ -13,6 +13,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -20,8 +22,8 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 300,
-                width: MediaQuery.of(context).size.width,
+                height: height * 0.36,
+                width: width,
                 child: Stack(
                   children: [
                     Positioned(
@@ -44,11 +46,12 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.024),
               Column(
                 children: [
-                  farmSwapFont(text: "Login To Your Account", size: 20),
-                  const SizedBox(height: 20),
+                  farmSwapFont(
+                      text: "Login To Your Account", size: height * 0.024),
+                  SizedBox(height: height * 0.024),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
@@ -56,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                       onPress: () {},
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: height * 0.024),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
@@ -67,14 +70,14 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: const EdgeInsets.symmetric(vertical: 20),
+                margin: EdgeInsets.symmetric(vertical: height * 0.024),
                 child: Text(
                   'Or Continue With',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      color: Color(0xFF09051C),
-                      fontSize: 12,
+                    textStyle: TextStyle(
+                      color: const Color(0xFF09051C),
+                      fontSize: height * 0.014,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -97,22 +100,22 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.024),
               Text(
                 'Forgot Your Password?',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    color: Color(0xFF53E78B),
-                    fontSize: 12,
+                  textStyle: TextStyle(
+                    color: const Color(0xFF53E78B),
+                    fontSize: height * 0.014,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.solid,
-                    decorationColor: Color(0xFF53E78B),
+                    decorationColor: const Color(0xFF53E78B),
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const Spacer(),
               const FarmSwapPrimaryButton(
                 buttonTitle: "Login",
                 nextScreen: SplashScreen(),
