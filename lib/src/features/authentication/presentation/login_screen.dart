@@ -1,12 +1,12 @@
-import 'package:farmswap_v2/src/common_widgets/farmswap_social_button.dart';
-import 'package:farmswap_v2/src/common_widgets/farmswap_text_field.dart';
+import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_social_button.dart';
+import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
-import 'package:farmswap_v2/src/features/authentication/presentation/splash_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/forgot_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../common_widgets/farmswap_primary_button.dart';
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
             children: [
               SizedBox(
                 height: height * 0.36,
-                width: width,
                 child: Stack(
                   children: [
                     Positioned(
@@ -57,6 +56,7 @@ class LoginScreen extends StatelessWidget {
                     child: FarmSwapTextField(
                       hintText: "Email",
                       onPress: () {},
+                      inputIcon: "assets/svg/auth/Message.svg",
                     ),
                   ),
                   SizedBox(height: height * 0.024),
@@ -65,6 +65,8 @@ class LoginScreen extends StatelessWidget {
                     child: FarmSwapTextField(
                       hintText: "Password",
                       onPress: () {},
+                      inputIcon: "assets/svg/auth/Lock.svg",
+                      isPassword: true,
                     ),
                   )
                 ],
@@ -101,24 +103,34 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.024),
-              Text(
-                'Forgot Your Password?',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: const Color(0xFF53E78B),
-                    fontSize: height * 0.014,
-                    fontWeight: FontWeight.w500,
-                    decoration: TextDecoration.underline,
-                    decorationStyle: TextDecorationStyle.solid,
-                    decorationColor: const Color(0xFF53E78B),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Forgot Your Password?',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      color: const Color(0xFF53E78B),
+                      fontSize: height * 0.014,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
+                      decorationStyle: TextDecorationStyle.solid,
+                      decorationColor: const Color(0xFF53E78B),
+                    ),
                   ),
                 ),
               ),
-              const Spacer(),
+              SizedBox(height: height * 0.024),
               const FarmSwapPrimaryButton(
                 buttonTitle: "Login",
-                nextScreen: SplashScreen(),
+                nextScreen: ForgotPasswordScreen(),
               ),
             ],
           ),

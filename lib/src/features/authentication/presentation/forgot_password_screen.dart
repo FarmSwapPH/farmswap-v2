@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../common_widgets/farmswap_primary_button.dart';
+import '../../../common_widgets/card/farmswap_contract_card.dart';
+import '../../../common_widgets/dot/farmswap_dot.dart';
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
 import 'splash_screen.dart';
-import 'upload_photo_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -56,25 +57,79 @@ class ForgotPasswordScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Upload Your Photo\nProfile"),
+                      screenTitle(value: "Forgot password?"),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:
-                            "This data will be displayed in your\naccount profile for security",
+                            "Select which contact details should\nwe use to reset your password",
                       ),
                       SizedBox(height: height * 0.024),
-                      CustomPicturePicker(
-                        height: height,
+                      FarmSwapContactCard(
                         width: width,
-                        imagePath: "assets/svg/upload photo/Gallery.svg",
-                        title: 'From Gallery',
+                        height: height,
+                        iconPath: "assets/svg/forgot password/Message.svg",
+                        title: "Via sms:",
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 14),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 14),
+                            Text(
+                              '4235',
+                              style: TextStyle(
+                                color: const Color(0xFF09051C),
+                                fontSize: height * 0.0197,
+                                fontFamily: 'Manrope',
+                                fontWeight: FontWeight.w400,
+                                height: 1.50,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: height * 0.024),
-                      CustomPicturePicker(
-                        height: height,
+                      FarmSwapContactCard(
                         width: width,
-                        imagePath: "assets/svg/upload photo/camera.svg",
-                        title: 'From Camera',
+                        height: height,
+                        iconPath: "assets/svg/forgot password/Email.svg",
+                        title: "Via sms:",
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 4),
+                            const SimpleDot(),
+                            const SizedBox(width: 14),
+                            Text(
+                              '@gmail.com',
+                              style: TextStyle(
+                                color: const Color(0xFF09051C),
+                                fontSize: height * 0.0197,
+                                fontFamily: 'Manrope',
+                                fontWeight: FontWeight.w400,
+                                height: 1.50,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const Spacer(),
                       const Center(

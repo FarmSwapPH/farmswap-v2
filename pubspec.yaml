@@ -68,6 +68,7 @@ flutter:
     - assets/svg/bio/
     - assets/svg/success/
     - assets/svg/upload photo/
+    - assets/svg/forgot password/
     - assets/images/
     - assets/images/payment badges/
 

@@ -1,7 +1,8 @@
-import 'package:farmswap_v2/src/common_widgets/farmswap_primary_button.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 
 class OnboardingScreen2 extends StatelessWidget {
   const OnboardingScreen2({super.key});
