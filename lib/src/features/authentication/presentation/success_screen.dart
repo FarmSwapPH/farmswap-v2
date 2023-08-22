@@ -3,7 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({super.key});
+  SuccessScreen({super.key, this.title, this.subtitle});
+
+  String? title;
+  String? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class SuccessScreen extends StatelessWidget {
                           ).createShader(bounds);
                         },
                         child: Text(
-                          'Congrats!',
+                          title ?? 'Congrats!',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             textStyle: const TextStyle(
@@ -55,7 +58,7 @@ class SuccessScreen extends StatelessWidget {
                       ),
                       SizedBox(height: height * 0.02),
                       Text(
-                        'Your Profile Is Ready To Use',
+                        subtitle ?? 'Your Profile Is Ready To Use',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
