@@ -1,3 +1,4 @@
+import 'package:farmswap_v2/src/features/authentication/presentation/password_reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -5,7 +6,6 @@ import '../../../common_widgets/card/farmswap_contract_card.dart';
 import '../../../common_widgets/dot/farmswap_dot.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
-import 'splash_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -135,7 +135,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       const Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SplashScreen(),
+                          nextScreen: PasswordResetScreen(),
                         ),
                       ),
                     ],

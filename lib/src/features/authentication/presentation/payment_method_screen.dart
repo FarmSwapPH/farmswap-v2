@@ -1,9 +1,9 @@
+import 'package:farmswap_v2/src/features/authentication/presentation/upload_photo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
-import 'splash_screen.dart';
 
 class PaymentMethodScreen extends StatelessWidget {
   const PaymentMethodScreen({super.key});
@@ -83,7 +83,7 @@ class PaymentMethodScreen extends StatelessWidget {
                       const Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SplashScreen(),
+                          nextScreen: UploadPhotoScreen(),
                         ),
                       ),
                     ],
