@@ -1,4 +1,3 @@
-import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(

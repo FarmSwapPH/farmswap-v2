@@ -1,4 +1,4 @@
-import 'package:farmswap_v2/src/features/authentication/presentation/splash_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/upload_profile_photo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -79,7 +79,7 @@ class UploadPhotoScreen extends StatelessWidget {
                       const Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SplashScreen(),
+                          nextScreen: UploadProfilePhotoScreen(),
                         ),
                       ),
                     ],

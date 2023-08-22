@@ -6,7 +6,6 @@ import '../../../common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dar
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
 import 'splash_screen.dart';
-import 'upload_photo_screen.dart';
 
 class VerificationCodeScreen extends StatelessWidget {
   const VerificationCodeScreen({super.key});

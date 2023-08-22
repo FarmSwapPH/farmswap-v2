@@ -1,10 +1,10 @@
+import 'package:farmswap_v2/src/features/authentication/presentation/success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
-import 'splash_screen.dart';
 
 class SetLocationScreen extends StatelessWidget {
   const SetLocationScreen({super.key});
@@ -148,10 +148,10 @@ class SetLocationScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SplashScreen(),
+                          nextScreen: SuccessScreen(),
                         ),
                       ),
                     ],

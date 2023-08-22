@@ -1,10 +1,9 @@
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
-import 'package:farmswap_v2/src/features/authentication/presentation/splash_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
-import "../../../constants/typography.dart";
 
 class BioScreen extends StatelessWidget {
   const BioScreen({super.key});
@@ -115,7 +114,7 @@ class BioScreen extends StatelessWidget {
                       const Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SplashScreen(),
+                          nextScreen: PaymentMethodScreen(),
                         ),
                       ),
                     ],

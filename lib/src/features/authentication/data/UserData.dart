@@ -1,3 +1,4 @@
+// ignore: file_names
 class UserData {
   final int id;
   final String firstName;

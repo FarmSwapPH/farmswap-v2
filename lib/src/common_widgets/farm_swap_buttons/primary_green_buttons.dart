@@ -6,7 +6,7 @@ class PrimaryGreenButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: 157,
         height: 57,
         child: Stack(
@@ -18,7 +18,7 @@ class PrimaryGreenButton extends StatelessWidget {
                 width: 157,
                 height: 57,
                 decoration: ShapeDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment(0.99, -0.15),
                     end: Alignment(-0.99, 0.15),
                     colors: [Color(0xFF53E78B), Color(0xFF14BE77)],
@@ -29,7 +29,7 @@ class PrimaryGreenButton extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               left: 60,
               top: 18,
               child: Text(
