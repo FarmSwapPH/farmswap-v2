@@ -1,6 +1,7 @@
 import 'package:farmswap_v2/src/features/authentication/presentation/bio_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/forgot_password_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/password_reset_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/set_location_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/splash_screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
-        child: const ForgotPasswordScreen(),
+        child: const PasswordResetScreen(),
       ),
     );
   }

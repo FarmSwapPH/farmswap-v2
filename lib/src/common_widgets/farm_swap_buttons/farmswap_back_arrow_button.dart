@@ -19,7 +19,7 @@ class FarmSwapBackArrowButton extends StatelessWidget {
           height: 42,
           width: 42,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(133, 255, 144, 18),
+            color: Color.fromARGB(36, 255, 144, 18),
             borderRadius: BorderRadius.circular(15),
           ),
           child: Align(
