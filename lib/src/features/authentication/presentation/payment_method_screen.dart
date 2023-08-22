@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../common_widgets/farmswap_primary_button.dart';
-import '../../../common_widgets/farmswap_text_field.dart';
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
 import 'splash_screen.dart';
 

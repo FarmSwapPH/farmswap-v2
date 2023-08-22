@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../common_widgets/farmswap_primary_button.dart';
+import '../../../common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
 import 'splash_screen.dart';
 import 'upload_photo_screen.dart';
@@ -36,26 +37,7 @@ class VerificationCodeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(15),
-                          child: Container(
-                            height: 42,
-                            width: 42,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(133, 255, 144, 18),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Align(
-                              child: SvgPicture.asset(
-                                "assets/svg/auth/back-arrow.svg",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
                       screenTitle(value: "Enter 4-digit\nVerification code"),
                       SizedBox(height: height * 0.024),

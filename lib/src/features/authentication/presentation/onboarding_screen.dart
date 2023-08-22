@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import "package:google_fonts/google_fonts.dart";
-import '../../../common_widgets/farmswap_primary_button.dart';
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import "./onboarding_screen2.dart";
 
 class OnboardingScreen1 extends StatelessWidget {
