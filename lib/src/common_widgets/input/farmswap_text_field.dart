@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants/colors.dart';
+
 // ignore: must_be_immutable
 class FarmSwapTextField extends StatefulWidget {
   final String hintText;
@@ -30,6 +32,7 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      cursorColor: FarmSwapGreen.normalGreen,
       obscureText: viewPassword! ? false : widget.isPassword,
       keyboardType:
           widget.isNumber == true ? TextInputType.number : TextInputType.text,

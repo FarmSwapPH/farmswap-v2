@@ -32,6 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -44,8 +46,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: SizedBox(
               child: SvgPicture.asset(
                 "assets/svg/splash_pattern.svg",
-                width: 197,
-                height: 203,
+                // width: 197,
+                // height: 203,
+                fit: BoxFit.cover,
               ),
             ),
           ),
