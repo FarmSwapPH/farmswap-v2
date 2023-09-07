@@ -1,3 +1,4 @@
+import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/upload_photo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,26 +35,7 @@ class PaymentMethodScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(15),
-                          child: Container(
-                            height: 42,
-                            width: 42,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(133, 255, 144, 18),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Align(
-                              child: SvgPicture.asset(
-                                "assets/svg/auth/back-arrow.svg",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
                       screenTitle(value: "Payment Method"),
                       SizedBox(height: height * 0.024),

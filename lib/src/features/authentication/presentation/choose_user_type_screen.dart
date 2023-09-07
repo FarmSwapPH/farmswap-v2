@@ -45,6 +45,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: height * 0.048),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             children: [

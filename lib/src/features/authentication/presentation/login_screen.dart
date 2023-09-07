@@ -2,6 +2,7 @@ import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_social
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/forgot_password_screen.dart';
+import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,6 +32,7 @@ class LoginScreen extends StatelessWidget {
                       right: 0,
                       child: SvgPicture.asset(
                         "assets/svg/auth/Pattern.svg",
+                        fit: BoxFit.cover,
                       ),
                     ),
                     Positioned(
@@ -129,7 +131,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: height * 0.024),
               const FarmSwapPrimaryButton(
                 buttonTitle: "Login",
-                nextScreen: ForgotPasswordScreen(),
+                nextScreen: DasboardScreen(),
               ),
             ],
           ),
