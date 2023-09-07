@@ -38,7 +38,7 @@ class SetLocationScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Set Your Location "),
+                      screenTitle(value: "Set Your Location ", height: height),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

@@ -37,7 +37,7 @@ class PaymentMethodScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Payment Method"),
+                      screenTitle(value: "Payment Method", height: height),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

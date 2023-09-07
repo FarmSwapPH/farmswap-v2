@@ -37,7 +37,9 @@ class BioScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Fill in your bio to get\nstarted"),
+                      screenTitle(
+                          value: "Fill in your bio to get\nstarted",
+                          height: height),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:
