@@ -38,7 +38,9 @@ class VerificationCodeScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Enter 4-digit\nVerification code"),
+                      screenTitle(
+                          value: "Enter 4-digit\nVerification code",
+                          height: height),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

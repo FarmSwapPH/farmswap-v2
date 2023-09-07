@@ -38,7 +38,8 @@ class PasswordResetScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Reset your\npassword here"),
+                      screenTitle(
+                          value: "Reset your\npassword here", height: height),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

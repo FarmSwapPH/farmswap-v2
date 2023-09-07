@@ -41,13 +41,13 @@ Text farmSwapFontHeading2({required String text}) {
   );
 }
 
-Text screenTitle({required String value}) {
+Text screenTitle({required String value, required double height}) {
   return Text(
     value,
     style: GoogleFonts.poppins(
-      textStyle: const TextStyle(
-        color: Color(0xFF09051C),
-        fontSize: 25,
+      textStyle: TextStyle(
+        color: const Color(0xFF09051C),
+        fontSize: height / 24,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.50,
       ),
@@ -55,12 +55,12 @@ Text screenTitle({required String value}) {
   );
 }
 
-Text baseText({required String value}) {
+Text baseText({required String value, Color color = Colors.black}) {
   return Text(
     value,
     style: GoogleFonts.poppins(
-      textStyle: const TextStyle(
-        color: Color(0xFF09051C),
+      textStyle: TextStyle(
+        color: color,
         fontSize: 12,
         letterSpacing: 0.50,
       ),

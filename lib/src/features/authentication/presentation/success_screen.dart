@@ -2,12 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../dashboard/presentation/dashboard_screen.dart';
+
 // ignore: must_be_immutable
-class SuccessScreen extends StatelessWidget {
+class SuccessScreen extends StatefulWidget {
   SuccessScreen({super.key, this.title, this.subtitle});
 
   String? title;
   String? subtitle;
+
+  @override
+  State<SuccessScreen> createState() => _SuccessScreenState();
+}
+
+class _SuccessScreenState extends State<SuccessScreen> {
+  void nextScreen() async {
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => const DasboardScreen()),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    nextScreen();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +72,7 @@ class SuccessScreen extends StatelessWidget {
                           ).createShader(bounds);
                         },
                         child: Text(
-                          title ?? 'Congrats!',
+                          widget.title ?? 'Congrats!',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             textStyle: const TextStyle(
@@ -59,7 +86,7 @@ class SuccessScreen extends StatelessWidget {
                       ),
                       SizedBox(height: height * 0.02),
                       Text(
-                        subtitle ?? 'Your Profile Is Ready To Use',
+                        widget.subtitle ?? 'Your Profile Is Ready To Use',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
