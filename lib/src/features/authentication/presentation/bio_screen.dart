@@ -1,3 +1,4 @@
+import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
@@ -34,26 +35,7 @@ class BioScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(15),
-                          child: Container(
-                            height: 42,
-                            width: 42,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(133, 255, 144, 18),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Align(
-                              child: SvgPicture.asset(
-                                "assets/svg/auth/back-arrow.svg",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
                       screenTitle(value: "Fill in your bio to get\nstarted"),
                       SizedBox(height: height * 0.024),
