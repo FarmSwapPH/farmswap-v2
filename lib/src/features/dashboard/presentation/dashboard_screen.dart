@@ -1,4 +1,3 @@
-import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_white_button.dart';
 import 'package:farmswap_v2/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -152,7 +151,7 @@ class DasboardScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       poppinsText(
-                                        value: "Special Deal for\nOctober",
+                                        value: "Search for\nSwappables",
                                         size: 17 / 812 * height,
                                         color: Colors.white,
                                       ),
@@ -207,15 +206,119 @@ class DasboardScreen extends StatelessWidget {
                       SizedBox(
                         height: 25 / 812 * height,
                       ),
+                      // Row(
+                      //   children: [
+                      //     poppinsText(value: "Nearest Swapper", size: 15),
+                      //     const Spacer(),
+                      //     GestureDetector(
+                      //       onTap: () {},
+                      //       child: baseText(
+                      //         value: "View More",
+                      //         color: const Color(0xFFFF7C32),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CategoryIcon(
+                            height: height,
+                            imagePath: "assets/images/category/pechay.jpg",
+                            text: "Veggies",
+                          ),
+                          SizedBox(
+                            width: 20 * 812 / height,
+                          ),
+                          CategoryIcon(
+                            height: height,
+                            imagePath: "assets/images/category/kasoy.jpg",
+                            text: "Fruits",
+                          ),
+                          SizedBox(
+                            width: 20 * 812 / height,
+                          ),
+                          CategoryIcon(
+                            height: height,
+                            imagePath: "assets/images/category/chili.jpg",
+                            text: "Spices",
+                          ),
+                          SizedBox(
+                            width: 20 * 812 / height,
+                          ),
+                          CategoryIcon(
+                            height: height,
+                            imagePath: "assets/images/category/nuts.jpg",
+                            text: "Seeds",
+                          ),
+                          SizedBox(
+                            width: 20 * 812 / height,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20 / 812 * height,
+                      ),
                       Row(
                         children: [
-                          poppinsText(value: "Nearest Restaurant", size: 15),
-                          const Spacer(),
-                          GestureDetector(
-                            onTap: () {},
-                            child: baseText(
-                              value: "View More",
-                              color: const Color(0xFFFF7C32),
+                          Container(
+                            // padding: const EdgeInsets.all(1),
+                            padding: const EdgeInsets.all(6),
+                            height: 156 / 812 * height,
+                            width: 108 / 375 * width,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                      0, 0, 0, 0.07), // Color with 7% opacity
+                                  offset: Offset(0, 26), // Y: 26
+                                  blurRadius: 50.0, // Blur: 50
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 98,
+                                  width: 96,
+                                  child: Stack(
+                                    children: [
+                                      Positioned.fill(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: ClipRRect(
+                                            clipBehavior: Clip.hardEdge,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.asset(
+                                              "assets/images/category/pechay.jpg",
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 96,
+                                  child: Text(
+                                    'Chinese Kangkong 1/2 Kilo',
+                                    style: TextStyle(
+                                      color: Color(0xFF09051C),
+                                      fontSize: 7,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w700,
+                                      height: 1.20,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ],
@@ -228,6 +331,41 @@ class DasboardScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CategoryIcon extends StatelessWidget {
+  const CategoryIcon({
+    super.key,
+    required this.height,
+    required this.imagePath,
+    required this.text,
+  });
+
+  final double height;
+  final String imagePath;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CircleAvatar(
+          backgroundColor: FarmSwapGreen.normalGreen,
+          radius: 30,
+          child: CircleAvatar(
+            radius: 28,
+            backgroundImage: AssetImage(
+              imagePath,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10 / 812 * height,
+        ),
+        baseText(value: text),
+      ],
     );
   }
 }
