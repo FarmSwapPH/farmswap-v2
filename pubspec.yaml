@@ -72,6 +72,7 @@ flutter:
     - assets/svg/dashboard/
     - assets/images/
     - assets/images/png/
+    - assets/images/category/
     - assets/images/payment badges/
 
   # An image asset can refer to one or more resolution-specific "variants", see
