@@ -1,4 +1,5 @@
 import 'package:farmswap_v2/src/constants/colors.dart';
+import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -213,44 +214,7 @@ class DasboardScreen extends StatelessWidget {
                         SizedBox(
                           height: 25 / 812 * height,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CategoryIcon(
-                              height: height,
-                              imagePath: "assets/images/category/pechay.jpg",
-                              text: "Veggies",
-                            ),
-                            SizedBox(
-                              width: 20 * 812 / height,
-                            ),
-                            CategoryIcon(
-                              height: height,
-                              imagePath: "assets/images/category/kasoy.jpg",
-                              text: "Fruits",
-                            ),
-                            SizedBox(
-                              width: 20 * 812 / height,
-                            ),
-                            CategoryIcon(
-                              height: height,
-                              imagePath: "assets/images/category/chili.jpg",
-                              text: "Spices",
-                            ),
-                            SizedBox(
-                              width: 20 * 812 / height,
-                            ),
-                            CategoryIcon(
-                              height: height,
-                              imagePath: "assets/images/category/nuts.jpg",
-                              text: "Seeds",
-                            ),
-                            SizedBox(
-                              width: 20 * 812 / height,
-                            ),
-                          ],
-                        ),
+                        CircleCategory(height: height),
                         SizedBox(
                           height: 20 / 812 * height,
                         ),
@@ -320,27 +284,123 @@ class DasboardScreen extends StatelessWidget {
                         SizedBox(
                           height: 20 / 812 * height,
                         ),
-                        Row(
-                          children: [
-                            poppinsText(
-                              value: 'Recommended 😍',
-                              size: 15 / 812 * height,
-                              isBold: true,
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              child: poppinsText(
-                                value: 'See All',
-                                size: 15 / 812 * height,
-                                color: const Color(0xFF14BE77),
-                              ),
-                            ),
-                          ],
+                        FarmSwapSectionTitle(
+                          height: height,
+                          title: 'Recommended 😍',
                         ),
                         SizedBox(
                           height: 20 / 812 * height,
                         ),
                         ScrollableRecommendedBadges(height: height),
+                        SizedBox(
+                          height: 20 / 812 * height,
+                        ),
+                        Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ListItemCard(
+                              height: height,
+                              width: width,
+                              productName: "Chinese Kangkong",
+                              productImage: "assets/images/category/pechay.jpg",
+                              productPrice: "₱ 50.00",
+                              productRating: "4.5",
+                              productDistance: "1.2",
+                              totalReviews: "20",
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            ListItemCard(
+                              height: height,
+                              width: width,
+                              productName: "Green Mango",
+                              productImage:
+                                  "assets/images/category/green mangoi.jpg",
+                              productPrice: "₱ 95.00",
+                              productRating: "4.3",
+                              productDistance: "5",
+                              totalReviews: "1.7K",
+                            ),
+
+                            // ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20 / 812 * height,
+                        ),
+                        FarmSwapSectionTitle(
+                          height: height,
+                          title: 'For Swaps 🤝',
+                        ),
+                        SizedBox(
+                          height: 20 / 812 * height,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              HorizontalListItem(
+                                width: width,
+                                height: height,
+                                productName: "Green Okra",
+                                productImage: "assets/images/dummy/okra.jpg",
+                                productPrice: "₱ 50.00",
+                                productRating: "4.5",
+                                productDistance: "1.2",
+                                totalReviews: "20",
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              HorizontalListItem(
+                                width: width,
+                                height: height,
+                                productName: "Siling Demonyo",
+                                productImage:
+                                    "assets/images/category/chili.jpg",
+                                productPrice: "₱600.00",
+                                productRating: "3.2",
+                                productDistance: "0.2",
+                                totalReviews: "45",
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20 / 812 * height,
+                        ),
+                        Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ListItemCard(
+                              height: height,
+                              width: width,
+                              productName: "Chinese Kangkong",
+                              productImage: "assets/images/category/pechay.jpg",
+                              productPrice: "₱ 50.00",
+                              productRating: "4.5",
+                              productDistance: "1.2",
+                              totalReviews: "20",
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            ListItemCard(
+                              height: height,
+                              width: width,
+                              productName: "Green Mango",
+                              productImage:
+                                  "assets/images/category/green mangoi.jpg",
+                              productPrice: "₱ 95.00",
+                              productRating: "4.3",
+                              productDistance: "5",
+                              totalReviews: "1.7K",
+                            ),
+
+                            // ),
+                          ],
+                        ),
                         SizedBox(
                           height: 20 / 812 * height,
                         ),
@@ -384,6 +444,281 @@ class DasboardScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNav(),
+    );
+  }
+}
+
+class CircleCategory extends StatelessWidget {
+  const CircleCategory({
+    super.key,
+    required this.height,
+  });
+
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CategoryIcon(
+          height: height,
+          imagePath: "assets/images/category/pechay.jpg",
+          text: "Veggies",
+        ),
+        SizedBox(
+          width: 20 * 812 / height,
+        ),
+        CategoryIcon(
+          height: height,
+          imagePath: "assets/images/category/kasoy.jpg",
+          text: "Fruits",
+        ),
+        SizedBox(
+          width: 20 * 812 / height,
+        ),
+        CategoryIcon(
+          height: height,
+          imagePath: "assets/images/category/chili.jpg",
+          text: "Spices",
+        ),
+        SizedBox(
+          width: 20 * 812 / height,
+        ),
+        CategoryIcon(
+          height: height,
+          imagePath: "assets/images/category/nuts.jpg",
+          text: "Seeds",
+        ),
+        SizedBox(
+          width: 20 * 812 / height,
+        ),
+      ],
+    );
+  }
+}
+
+class HorizontalListItem extends StatelessWidget {
+  HorizontalListItem({
+    super.key,
+    required this.width,
+    required this.height,
+    required this.productName,
+    required this.productImage,
+    required this.productPrice,
+    required this.productRating,
+    required this.productDistance,
+    required this.totalReviews,
+    this.promoLabel = "FOR SWAP ONLY",
+  });
+
+  final double width;
+  final double height;
+  final String productName;
+  final String productImage;
+  final String productPrice;
+  final String productRating;
+  final String productDistance;
+  final String totalReviews;
+  String promoLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 320 / 375 * width,
+      padding: const EdgeInsets.all(6),
+      constraints: const BoxConstraints(
+        maxWidth: 400,
+        maxHeight: 115,
+        minWidth: 320,
+        minHeight: 65,
+      ),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x11000000),
+            blurRadius: 50,
+            offset: Offset(26, 26),
+            spreadRadius: 0,
+          )
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 124 / 375 * width,
+            height: 100 / 812 * height,
+            constraints: const BoxConstraints(
+              maxWidth: 150,
+              minWidth: 94,
+              minHeight: 65,
+            ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          productImage,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 5,
+                  left: 10,
+                  child: Container(
+                    // width: 28,
+                    // height: 10,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 2,
+                      horizontal: 5,
+                    ),
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF14BE77),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3FFFFFFF),
+                          blurRadius: 40,
+                          offset: Offset(15, 20),
+                          spreadRadius: 0,
+                        )
+                      ],
+                    ),
+                    child: poppinsText(
+                      value: promoLabel,
+                      size: 8 / 812 * height,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              farmSwapFont(
+                text: "8 hours : 12 minutes",
+                size: 18 / 812 * height,
+                color: FarmSwapGreen.normalGreen,
+              ),
+              SizedBox(
+                height: 10 / 812 * height,
+              ),
+              SizedBox(
+                child: poppinsText(
+                  value: productName,
+                  size: 12 / 812 * height,
+                ),
+              ),
+              SizedBox(
+                height: 10 / 812 * height,
+              ),
+              poppinsText(
+                value: '$productDistance km | ⭐ $productRating ($totalReviews)',
+                size: 10 / 812 * height,
+                color: const Color(0xFF5F5D6B),
+              ),
+              SizedBox(
+                height: 10 / 812 * height,
+              ),
+              Row(
+                children: [
+                  poppinsText(
+                    value: productPrice,
+                    size: 14 / 812 * height,
+                    isBold: true,
+                    color: FarmSwapGreen.normalGreen,
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  poppinsText(
+                    value: "|",
+                    size: 10 / 812 * height,
+                    color: const Color(0xFF5F5D6B),
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  SizedBox(
+                    child: Align(
+                      child: SvgPicture.asset(
+                        height: 15,
+                        width: 15,
+                        "assets/svg/dashboard/delivery icon.svg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  poppinsText(
+                    value: "₱20.00",
+                    size: 10 / 812 * height,
+                    color: const Color(0xFF5F5D6B),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FarmSwapSectionTitle extends StatelessWidget {
+  const FarmSwapSectionTitle({
+    super.key,
+    required this.height,
+    required this.title,
+    this.onPress,
+  });
+
+  final double height;
+  final String title;
+  final VoidCallback? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        poppinsText(
+          value: title,
+          size: 15 / 812 * height,
+          isBold: true,
+        ),
+        const Spacer(),
+        GestureDetector(
+          onTap: onPress,
+          child: poppinsText(
+            value: 'See All',
+            size: 15 / 812 * height,
+            color: const Color(0xFF14BE77),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -644,6 +979,35 @@ class ListItemCard extends StatelessWidget {
                 size: 14 / 812 * height,
                 isBold: true,
                 color: FarmSwapGreen.normalGreen,
+              ),
+              const SizedBox(
+                width: 3,
+              ),
+              poppinsText(
+                value: "|",
+                size: 10 / 812 * height,
+                color: const Color(0xFF5F5D6B),
+              ),
+              const SizedBox(
+                width: 3,
+              ),
+              SizedBox(
+                child: Align(
+                  child: SvgPicture.asset(
+                    height: 15,
+                    width: 15,
+                    "assets/svg/dashboard/delivery icon.svg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 3,
+              ),
+              poppinsText(
+                value: "₱20.00",
+                size: 10 / 812 * height,
+                color: const Color(0xFF5F5D6B),
               ),
             ],
           )
