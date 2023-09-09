@@ -2,11 +2,14 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
 Text farmSwapFont(
-    {required String text, required double size, String? fontFamily}) {
+    {required String text,
+    required double size,
+    String? fontFamily,
+    Color? color}) {
   return Text(
     text,
     style: TextStyle(
-      color: Colors.black,
+      color: color ?? Colors.black,
       fontSize: size,
       fontFamily: fontFamily ?? 'Viga',
       fontWeight: FontWeight.w800,
