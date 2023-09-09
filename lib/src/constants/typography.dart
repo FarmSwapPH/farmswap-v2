@@ -68,15 +68,20 @@ Text baseText({required String value, Color color = Colors.black}) {
   );
 }
 
-Text poppinsText({required String value, required double size, Color? color}) {
+Text poppinsText(
+    {required String value,
+    required double size,
+    Color? color,
+    bool isBold = false}) {
   return Text(
     value,
     style: GoogleFonts.poppins(
       textStyle: TextStyle(
         color: color ?? const Color(0xFF09051C),
         fontSize: size,
-        fontWeight: FontWeight.w700,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
         letterSpacing: 0.50,
+        height: 1.20,
       ),
     ),
   );
