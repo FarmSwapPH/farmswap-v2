@@ -39,7 +39,7 @@ class _FarmSwapSearchbarState extends State<FarmSwapSearchbar> {
               const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           filled: true,
           fillColor: const Color(0xFFF9A84D).withOpacity(0.1),
-          hintText: "What do you want to order?",
+          hintText: "What do you want to swap?",
           hintStyle: GoogleFonts.poppins(
             textStyle: TextStyle(
               color: const Color(0xFFDA6317).withOpacity(0.4),
