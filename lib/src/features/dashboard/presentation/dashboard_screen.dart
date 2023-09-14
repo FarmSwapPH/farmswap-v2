@@ -3,6 +3,7 @@ import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../common_widgets/farm_swap_buttons/farmswap_white_icon.dart';
 import '../../../common_widgets/input/farmswap_searchbar.dart';
 import '../../../constants/typography.dart';
 
@@ -62,7 +63,6 @@ class DasboardScreen extends StatelessWidget {
                               child: Align(
                                 child: SvgPicture.asset(
                                   "assets/svg/dashboard/Icon Notification.svg",
-                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),

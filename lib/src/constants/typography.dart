@@ -50,7 +50,7 @@ Text screenTitle({required String value, required double height}) {
     style: GoogleFonts.poppins(
       textStyle: TextStyle(
         color: const Color(0xFF09051C),
-        fontSize: height / 24,
+        fontSize: 24 / height,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.50,
       ),
