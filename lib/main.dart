@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
-        child: const ItemDetailScreen(),
+        child: const SplashScreen(),
       ),
     );
   }
