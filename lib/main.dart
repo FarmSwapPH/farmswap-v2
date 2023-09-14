@@ -1,4 +1,5 @@
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
 import 'package:farmswap_v2/src/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
-        child: const DasboardScreen(),
+        child: const SplashScreen(),
       ),
     );
   }

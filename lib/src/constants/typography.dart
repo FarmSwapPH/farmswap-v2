@@ -50,7 +50,7 @@ Text screenTitle({required String value, required double height}) {
     style: GoogleFonts.poppins(
       textStyle: TextStyle(
         color: const Color(0xFF09051C),
-        fontSize: height / 24,
+        fontSize: 24 / height,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.50,
       ),
@@ -88,4 +88,39 @@ Text poppinsText(
       ),
     ),
   );
+}
+
+class FarmSwapSectionTitle extends StatelessWidget {
+  const FarmSwapSectionTitle({
+    super.key,
+    required this.height,
+    required this.title,
+    this.onPress,
+  });
+
+  final double height;
+  final String title;
+  final VoidCallback? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        poppinsText(
+          value: title,
+          size: 15 / 812 * height,
+          isBold: true,
+        ),
+        const Spacer(),
+        GestureDetector(
+          onTap: onPress,
+          child: poppinsText(
+            value: 'See All',
+            size: 15 / 812 * height,
+            color: const Color(0xFF14BE77),
+          ),
+        ),
+      ],
+    );
+  }
 }
