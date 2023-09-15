@@ -1,11 +1,8 @@
-import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
 import 'package:farmswap_v2/src/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'src/features/authentication/presentation/splash_screen.dart';
-import 'src/features/authentication/presentation/verification_code_screen.dart';
 
 void main() {
   runApp(const MyApp());

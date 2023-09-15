@@ -42,9 +42,44 @@ class DasboardScreen extends StatelessWidget {
                         SizedBox(height: height * 0.024),
                         Row(
                           children: [
-                            screenTitle(
-                              value: "Search for\nSwappables",
-                              height: height,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                    "assets/images/png/farmer.png",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    baseText(
+                                      value: "Delivery to",
+                                      color: FarmSwapBlack.light,
+                                    ),
+                                    Row(
+                                      children: [
+                                        poppinsText(
+                                          value: "Z. Estreras",
+                                          size: 14,
+                                          isBold: true,
+                                        ),
+                                        const SizedBox(
+                                          width: 3,
+                                        ),
+                                        Icon(
+                                          Icons.arrow_drop_down_rounded,
+                                          color: FarmSwapGreen.normalGreen,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                             const Spacer(),
                             Container(

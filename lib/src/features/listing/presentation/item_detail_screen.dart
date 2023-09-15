@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_generic_button.dart';
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/primary_green_buttons.dart';
@@ -232,16 +234,17 @@ class ItemDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            PrimaryGreenButton(
-              value: "Swap Now",
-              height: height,
-              width: width,
-            ),
-            SizedBox(
-              height: 20 / 812 * height,
-            )
+
+            // SizedBox(
+            //   height: 20 / 812 * height,
+            // )
           ],
         ),
+      ),
+      floatingActionButton: PrimaryGreenButton(
+        value: "Swap Now",
+        height: height,
+        width: width,
       ),
     );
   }
