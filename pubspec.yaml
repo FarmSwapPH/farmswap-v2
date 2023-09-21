@@ -24,6 +24,8 @@ flutter:
 
   assets:
     - assets/svg/
+    - assets/svg/logo/svg/
+    - assets/svg/logo/png/
     - assets/svg/onboarding/
     - assets/svg/auth/
     - assets/svg/bio/

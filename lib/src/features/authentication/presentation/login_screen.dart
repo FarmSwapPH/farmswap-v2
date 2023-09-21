@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
+import '../../../constants/logo.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -40,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                       right: 89,
                       left: 89,
                       child: Center(
-                        child: Image.asset("assets/images/Logo.png"),
+                        child: SvgPicture.asset(logo),
                       ),
                     ),
                   ],
