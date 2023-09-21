@@ -1,3 +1,5 @@
+import 'package:farmswap_v2/src/constants/colors.dart';
+import 'package:farmswap_v2/src/constants/logo.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> {
           Positioned(
             child: Center(
               child: SizedBox(
-                child: Image.asset(
-                  "assets/images/Logo.png",
+                child: SvgPicture.asset(
+                  logo,
                   width: 197,
                   height: 203,
                 ),

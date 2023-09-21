@@ -1,3 +1,4 @@
+import 'package:farmswap_v2/src/constants/logo.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/choose_user_type_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         right: 89,
                         left: 89,
                         child: Center(
-                          child: Image.asset("assets/images/Logo.png"),
+                          child: SvgPicture.asset(logo),
                         ),
                       ),
                     ],
