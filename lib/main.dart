@@ -1,3 +1,4 @@
+import 'package:farmswap_v2/src/features/chat/presentation/chat_screen.dart';
 import 'package:farmswap_v2/src/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
-        child: const SplashScreen(),
+        child: const ChatScreen(),
       ),
     );
   }
