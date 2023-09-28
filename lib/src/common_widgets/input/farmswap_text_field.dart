@@ -6,10 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/colors.dart';
 
+typedef OnTextChangedCallback = void Function(String value);
+
 // ignore: must_be_immutable
 class FarmSwapTextField extends StatefulWidget {
   final String hintText;
-  final VoidCallback onPress;
+  final OnTextChangedCallback onPress;
   String? inputIcon;
   bool isPassword;
   bool isNumber;
@@ -28,6 +30,7 @@ class FarmSwapTextField extends StatefulWidget {
 }
 
 class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
+  final TextEditingController _usernameController = TextEditingController();
   bool? viewPassword = false;
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,7 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
         ),
       ),
       child: TextField(
+        controller: _usernameController,
         cursorColor: FarmSwapGreen.normalGreen,
         obscureText: viewPassword! ? false : widget.isPassword,
         keyboardType:

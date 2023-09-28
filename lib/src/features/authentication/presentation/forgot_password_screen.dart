@@ -114,10 +114,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: PasswordResetScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

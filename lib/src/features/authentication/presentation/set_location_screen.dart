@@ -129,11 +129,11 @@ class SetLocationScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Spacer(),
+                      Spacer(),
                       Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SuccessScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

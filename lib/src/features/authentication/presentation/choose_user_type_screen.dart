@@ -107,10 +107,10 @@ class ChooseUserTypeScreen extends StatelessWidget {
                         ],
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: BioScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

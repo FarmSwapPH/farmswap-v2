@@ -18,6 +18,9 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool agreeToTerms = false;
+
+  String? username, email, password;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -66,7 +69,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: FarmSwapTextField(
                         hintText: "Username",
-                        onPress: () {},
+                        onPress: (value) {
+                          setState(() {
+                            username = value;
+                          });
+                        },
                         inputIcon: "assets/svg/auth/Profile.svg",
                       ),
                     ),
@@ -75,7 +82,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: FarmSwapTextField(
                         hintText: "Email",
-                        onPress: () {},
+                        onPress: (value) {
+                          setState(() {
+                            email = value;
+                          });
+                        },
                         inputIcon: "assets/svg/auth/Message.svg",
                       ),
                     ),
@@ -84,7 +95,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: FarmSwapTextField(
                         hintText: "Password",
-                        onPress: () {},
+                        onPress: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
                         inputIcon: "assets/svg/auth/Lock.svg",
                         isPassword: true,
                       ),
@@ -143,9 +158,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const FarmSwapPrimaryButton(
+                FarmSwapPrimaryButton(
                   buttonTitle: "Create Account",
-                  nextScreen: ChooseUserTypeScreen(),
+                  onPress: () {
+                    print("$email, $username, $password");
+                  },
                 ),
                 SizedBox(height: height * 0.012),
                 GestureDetector(

@@ -59,10 +59,10 @@ class UploadPhotoScreen extends StatelessWidget {
                         title: 'From Camera',
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: UploadProfilePhotoScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

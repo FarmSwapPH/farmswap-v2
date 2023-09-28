@@ -58,7 +58,7 @@ class BioScreen extends StatelessWidget {
                         ),
                         child: FarmSwapTextField(
                           hintText: 'First Name',
-                          onPress: () {},
+                          onPress: (value) {},
                         ),
                       ),
                       SizedBox(height: height * 0.024),
@@ -74,7 +74,7 @@ class BioScreen extends StatelessWidget {
                         ),
                         child: FarmSwapTextField(
                           hintText: 'Last Name',
-                          onPress: () {},
+                          onPress: (value) {},
                         ),
                       ),
                       SizedBox(height: height * 0.024),
@@ -90,15 +90,15 @@ class BioScreen extends StatelessWidget {
                         ),
                         child: FarmSwapTextField(
                           hintText: 'Mobile Number',
-                          onPress: () {},
+                          onPress: (value) {},
                           isNumber: true,
                         ),
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: PaymentMethodScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],
