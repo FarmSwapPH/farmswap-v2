@@ -18,6 +18,9 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool agreeToTerms = false;
+
+  String? username, email, password;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

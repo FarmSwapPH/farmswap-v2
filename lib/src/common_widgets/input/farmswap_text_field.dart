@@ -28,6 +28,7 @@ class FarmSwapTextField extends StatefulWidget {
 }
 
 class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
+  final TextEditingController _usernameController = TextEditingController();
   bool? viewPassword = false;
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
         ),
       ),
       child: TextField(
+        controller: _usernameController,
         cursorColor: FarmSwapGreen.normalGreen,
         obscureText: viewPassword! ? false : widget.isPassword,
         keyboardType:
