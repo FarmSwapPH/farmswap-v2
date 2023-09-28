@@ -1,7 +1,7 @@
-import 'package:farmswap_v2/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../common_widgets/card/farmswap_chat_list_card.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
 import '../../../constants/typography.dart';
 
@@ -38,39 +38,31 @@ class ChatScreen extends StatelessWidget {
                       SizedBox(height: height * 0.024),
                       screenTitle(value: "Chat", height: height),
                       SizedBox(height: height * 0.024),
-                      Container(
-                        height: height * 0.089,
+                      ChatListCard(
+                        height: height,
                         width: width,
-                        padding: const EdgeInsets.all(10),
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(22),
-                          ),
-                          shadows: const [
-                            BoxShadow(
-                              color: Color(0x115A6CEA),
-                              blurRadius: 50,
-                              offset: Offset(12, 26),
-                              spreadRadius: 0,
-                            )
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                // color: FarmSwapGreen.normalGreen,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              width: 62,
-                              height: 62,
-                              child: Align(
-                                child: Image.asset("assets/images/person.png"),
-                              ),
-                            ),
-                          ],
-                        ),
+                        avatar: "assets/images/person.png",
+                        lastMessage: 'Padong na ang talong',
+                        name: 'Rian Barriga',
+                        lastSent: '10 mins',
+                      ),
+                      SizedBox(height: height * 0.024),
+                      ChatListCard(
+                        height: height,
+                        width: width,
+                        avatar: "assets/images/person.png",
+                        lastMessage: 'Hala ang manok',
+                        name: 'Kriz Ligaray',
+                        lastSent: '10 mins',
+                      ),
+                      SizedBox(height: height * 0.024),
+                      ChatListCard(
+                        height: height,
+                        width: width,
+                        avatar: "assets/images/person.png",
+                        lastMessage: 'Kuhaa ang baboy guys',
+                        name: 'German Abing',
+                        lastSent: '10 mins',
                       )
                     ],
                   ),
