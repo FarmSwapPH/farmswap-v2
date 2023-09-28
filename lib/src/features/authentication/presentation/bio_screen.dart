@@ -95,10 +95,10 @@ class BioScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: PaymentMethodScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

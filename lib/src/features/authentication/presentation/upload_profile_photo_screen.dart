@@ -61,10 +61,10 @@ class UploadProfilePhotoScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SetLocationScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

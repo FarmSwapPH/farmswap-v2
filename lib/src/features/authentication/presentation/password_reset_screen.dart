@@ -57,11 +57,11 @@ class PasswordResetScreen extends StatelessWidget {
                         onPress: (value) {},
                         isPassword: true,
                       ),
-                      const Spacer(),
+                      Spacer(),
                       Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SuccessScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

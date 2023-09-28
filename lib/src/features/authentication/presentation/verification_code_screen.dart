@@ -59,10 +59,10 @@ class VerificationCodeScreen extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: SplashScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],

@@ -45,9 +45,9 @@ class OnboardingScreen2 extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 42),
-            const FarmSwapPrimaryButton(
+            FarmSwapPrimaryButton(
               buttonTitle: "Next",
-              nextScreen: LoginScreen(),
+              onPress: () {},
             ),
           ],
         ),

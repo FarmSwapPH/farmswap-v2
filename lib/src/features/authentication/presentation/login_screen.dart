@@ -130,9 +130,9 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.024),
-              const FarmSwapPrimaryButton(
+              FarmSwapPrimaryButton(
                 buttonTitle: "Login",
-                nextScreen: DasboardScreen(),
+                onPress: () {},
               ),
             ],
           ),

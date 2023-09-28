@@ -62,10 +62,10 @@ class PaymentMethodScreen extends StatelessWidget {
                         paymentPath: "assets/images/payment badges/maya.png",
                       ),
                       const Spacer(),
-                      const Center(
+                      Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          nextScreen: UploadPhotoScreen(),
+                          onPress: () {},
                         ),
                       ),
                     ],
