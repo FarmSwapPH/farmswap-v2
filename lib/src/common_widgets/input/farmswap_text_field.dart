@@ -46,7 +46,7 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
         obscureText: viewPassword! ? false : widget.isPassword,
         keyboardType:
             widget.isNumber == true ? TextInputType.number : TextInputType.text,
-        onChanged: (value) => widget.onPress,
+        onChanged: (value) => {widget.onPress(value)},
         selectionHeightStyle: BoxHeightStyle.includeLineSpacingBottom,
         decoration: InputDecoration(
           contentPadding:

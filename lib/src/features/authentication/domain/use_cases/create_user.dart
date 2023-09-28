@@ -11,6 +11,11 @@ Future<void> createUser(String email, String password, String username) async {
     password: password,
   );
 
-  // Update the user's username.
-  await user?.updateDisplayName(username);
+  await userCredential.user?.sendEmailVerification();
+  await userCredential.user?.updateDisplayName(username);
+
+  // await user?.sendEmailVerification();
+
+  // // Update the user's username.
+  // await user?.updateDisplayName(username);
 }

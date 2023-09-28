@@ -1,5 +1,5 @@
 import 'package:farmswap_v2/src/constants/logo.dart';
-import 'package:farmswap_v2/src/features/authentication/presentation/choose_user_type_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/domain/use_cases/create_user.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../common_widgets/input/farmswap_text_field.dart';
 import '../../../constants/typography.dart';
+import '../../dashboard/presentation/dashboard_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -159,9 +160,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 20),
                 FarmSwapPrimaryButton(
+                  isEnabled: agreeToTerms,
                   buttonTitle: "Create Account",
                   onPress: () {
-                    print("$email, $username, $password");
+                    createUser(email!, password!, username!);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DasboardScreen(),
+                      ),
+                    );
                   },
                 ),
                 SizedBox(height: height * 0.012),
@@ -170,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const LoginScreen()),
+                        builder: ((context) => LoginScreen()),
                       ),
                     );
                   },

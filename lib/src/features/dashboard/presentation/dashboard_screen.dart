@@ -1,6 +1,7 @@
 import 'package:farmswap_v2/src/constants/colors.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,8 +10,15 @@ import '../../../constants/typography.dart';
 import '../../listing/presentation/list_item_card.dart';
 import '../../listing/presentation/list_item_horizontal_cart.dart';
 
-class DasboardScreen extends StatelessWidget {
+class DasboardScreen extends StatefulWidget {
   const DasboardScreen({super.key});
+
+  @override
+  State<DasboardScreen> createState() => _DasboardScreenState();
+}
+
+class _DasboardScreenState extends State<DasboardScreen> {
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +72,9 @@ class DasboardScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         poppinsText(
-                                          value: "Z. Estreras",
+                                          value:
+                                              auth.currentUser?.displayName ??
+                                                  "",
                                           size: 14,
                                           isBold: true,
                                         ),

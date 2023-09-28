@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 class FarmSwapPrimaryButton extends StatelessWidget {
   final String buttonTitle;
   final VoidCallback? onPress;
+  bool isEnabled;
 
-  const FarmSwapPrimaryButton({
+  FarmSwapPrimaryButton({
     super.key,
     required this.buttonTitle,
     required this.onPress,
+    this.isEnabled = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onPress,
+      onPressed: isEnabled ? onPress : null,
       style: TextButton.styleFrom(
         minimumSize: const Size(157, 57),
         shape: RoundedRectangleBorder(
