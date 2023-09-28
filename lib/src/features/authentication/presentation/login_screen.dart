@@ -1,6 +1,7 @@
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_social_button.dart';
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
+import 'package:farmswap_v2/src/features/authentication/domain/use_cases/login_user.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/forgot_password_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,15 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/logo.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String? email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +65,11 @@ class LoginScreen extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
                       hintText: "Email",
-                      onPress: (value) {},
+                      onPress: (value) {
+                        setState(() {
+                          email = value;
+                        });
+                      },
                       inputIcon: "assets/svg/auth/Message.svg",
                     ),
                   ),
@@ -66,7 +78,11 @@ class LoginScreen extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
                       hintText: "Password",
-                      onPress: (value) {},
+                      onPress: (value) {
+                        setState(() {
+                          password = value;
+                        });
+                      },
                       inputIcon: "assets/svg/auth/Lock.svg",
                       isPassword: true,
                     ),
@@ -131,8 +147,17 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: height * 0.024),
               FarmSwapPrimaryButton(
+                isEnabled: true,
                 buttonTitle: "Login",
-                onPress: () {},
+                onPress: () {
+                  loginUser(email!, password!);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DasboardScreen(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
