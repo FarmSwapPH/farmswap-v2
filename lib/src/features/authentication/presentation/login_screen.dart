@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
                       hintText: "Email",
-                      onPress: () {},
+                      onPress: (value) {},
                       inputIcon: "assets/svg/auth/Message.svg",
                     ),
                   ),
@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
                       hintText: "Password",
-                      onPress: () {},
+                      onPress: (value) {},
                       inputIcon: "assets/svg/auth/Lock.svg",
                       isPassword: true,
                     ),

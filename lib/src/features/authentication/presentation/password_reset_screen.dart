@@ -48,13 +48,13 @@ class PasswordResetScreen extends StatelessWidget {
                       SizedBox(height: height * 0.048),
                       FarmSwapTextField(
                         hintText: "New Password",
-                        onPress: () {},
+                        onPress: (value) {},
                         isPassword: true,
                       ),
                       SizedBox(height: height * 0.024),
                       FarmSwapTextField(
                         hintText: "Confirm New Password",
-                        onPress: () {},
+                        onPress: (value) {},
                         isPassword: true,
                       ),
                       const Spacer(),
