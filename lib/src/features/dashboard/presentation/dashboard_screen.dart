@@ -72,9 +72,7 @@ class _DasboardScreenState extends State<DasboardScreen> {
                                     Row(
                                       children: [
                                         poppinsText(
-                                          value:
-                                              auth.currentUser?.displayName ??
-                                                  "",
+                                          value: auth.currentUser?.email ?? "",
                                           size: 14,
                                           isBold: true,
                                         ),
