@@ -4,6 +4,7 @@ import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/domain/use_cases/login_user.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/forgot_password_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -149,14 +150,22 @@ class _LoginScreenState extends State<LoginScreen> {
               FarmSwapPrimaryButton(
                 isEnabled: true,
                 buttonTitle: "Login",
-                onPress: () {
-                  loginUser(email!, password!);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DasboardScreen(),
-                    ),
-                  );
+                onPress: () async {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                        email: email!,
+                        password: password!,
+                      )
+                      .then(
+                        (value) => {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DasboardScreen(),
+                            ),
+                          )
+                        },
+                      );
                 },
               ),
             ],

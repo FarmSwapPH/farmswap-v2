@@ -1,3 +1,4 @@
+import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -72,6 +73,7 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNav(),
     );
   }
 }

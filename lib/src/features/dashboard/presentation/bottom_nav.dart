@@ -1,4 +1,6 @@
 import 'package:farmswap_v2/src/constants/typography.dart';
+import 'package:farmswap_v2/src/features/chat/presentation/chat_screen.dart';
+import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -25,23 +27,37 @@ class BottomNav extends StatelessWidget {
           )
         ],
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CustomBottomIcon(
-            icon: 'assets/svg/bottom nav/Home.svg',
-            label: "Home",
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const DasboardScreen()),
+              );
+            },
+            child: const CustomBottomIcon(
+              icon: 'assets/svg/bottom nav/Home.svg',
+              label: "Home",
+            ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           NoLabelCustomBottomIcon(
             icon: 'assets/svg/bottom nav/Profile.svg',
+            onPress: () {},
           ),
           // SizedBox(width: 5),
           NoLabelCustomBottomIcon(
             icon: 'assets/svg/bottom nav/Buy.svg',
+            onPress: () {},
           ),
           NoLabelCustomBottomIcon(
             icon: 'assets/svg/bottom nav/Chat.svg',
+            onPress: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ChatScreen()));
+            },
           ),
         ],
       ),
@@ -94,25 +110,30 @@ class NoLabelCustomBottomIcon extends StatelessWidget {
   const NoLabelCustomBottomIcon({
     super.key,
     required this.icon,
+    required this.onPress,
   });
 
   final String icon;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 44,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        width: 50,
+        height: 44,
+        decoration: ShapeDecoration(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
-      ),
-      child: SizedBox(
-        height: 20,
-        width: 20,
-        child: Align(
-          child: SvgPicture.asset(icon),
+        child: SizedBox(
+          height: 20,
+          width: 20,
+          child: Align(
+            child: SvgPicture.asset(icon),
+          ),
         ),
       ),
     );
