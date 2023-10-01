@@ -1,9 +1,11 @@
 import 'package:farmswap_v2/src/constants/logo.dart';
 import 'package:farmswap_v2/src/features/authentication/domain/use_cases/create_user.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
+import 'package:farmswap_v2/src/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../common_widgets/input/farmswap_text_field.dart';
@@ -20,7 +22,17 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool agreeToTerms = false;
 
-  String? username, email, password;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose(); // Dispose of the controller
+    passwordController.dispose(); // Dispose of the controller
+    usernameController.dispose(); // Dispose of the controller
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: FarmSwapTextField(
                         hintText: "Username",
-                        onPress: (value) {
-                          setState(() {
-                            username = value;
-                          });
-                        },
+                        controller: usernameController,
                         inputIcon: "assets/svg/auth/Profile.svg",
                       ),
                     ),
@@ -83,11 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: FarmSwapTextField(
                         hintText: "Email",
-                        onPress: (value) {
-                          setState(() {
-                            email = value;
-                          });
-                        },
+                        controller: emailController,
                         inputIcon: "assets/svg/auth/Message.svg",
                       ),
                     ),
@@ -96,11 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: FarmSwapTextField(
                         hintText: "Password",
-                        onPress: (value) {
-                          setState(() {
-                            password = value;
-                          });
-                        },
+                        controller: passwordController,
                         inputIcon: "assets/svg/auth/Lock.svg",
                         isPassword: true,
                       ),
@@ -163,11 +163,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   isEnabled: agreeToTerms,
                   buttonTitle: "Create Account",
                   onPress: () {
-                    createUser(email!, password!, username!);
-                    Navigator.push(
+                    Provider.of<UserProvider>(context, listen: false)
+                        .setEmail(emailController.text.trim());
+                    Provider.of<UserProvider>(context)
+                        .setPassword(passwordController.text.trim());
+                    Provider.of<UserProvider>(context)
+                        .setUsername(emailController.text.trim());
+
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DasboardScreen(),
+                        builder: ((context) => LoginScreen()),
                       ),
                     );
                   },

@@ -7,7 +7,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 
 class BioScreen extends StatelessWidget {
-  const BioScreen({super.key});
+  BioScreen({super.key});
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +62,7 @@ class BioScreen extends StatelessWidget {
                         ),
                         child: FarmSwapTextField(
                           hintText: 'First Name',
-                          onPress: (value) {},
+                          controller: firstNameController,
                         ),
                       ),
                       SizedBox(height: height * 0.024),
@@ -74,7 +78,7 @@ class BioScreen extends StatelessWidget {
                         ),
                         child: FarmSwapTextField(
                           hintText: 'Last Name',
-                          onPress: (value) {},
+                          controller: lastNameController,
                         ),
                       ),
                       SizedBox(height: height * 0.024),
@@ -90,7 +94,7 @@ class BioScreen extends StatelessWidget {
                         ),
                         child: FarmSwapTextField(
                           hintText: 'Mobile Number',
-                          onPress: (value) {},
+                          controller: mobileNumberController,
                           isNumber: true,
                         ),
                       ),

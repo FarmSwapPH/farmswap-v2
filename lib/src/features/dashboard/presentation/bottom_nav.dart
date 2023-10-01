@@ -34,7 +34,8 @@ class BottomNav extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const DasboardScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const DashboardScreen()),
               );
             },
             child: const CustomBottomIcon(
