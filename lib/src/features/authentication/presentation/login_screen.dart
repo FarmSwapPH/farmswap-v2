@@ -20,7 +20,46 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String? email, password;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future signIn() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        )
+        .then(
+          (value) => {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DashboardScreen(),
+              ),
+            )
+          },
+        )
+        .onError(
+          (error, stackTrace) => {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) => Center(
+                child: Text(
+                  error.toString(),
+                ),
+              ),
+            ),
+          },
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
                       hintText: "Email",
-                      onPress: (value) {
-                        setState(() {
-                          email = value;
-                        });
-                      },
                       inputIcon: "assets/svg/auth/Message.svg",
+                      controller: emailController,
                     ),
                   ),
                   SizedBox(height: height * 0.024),
@@ -79,11 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
                       hintText: "Password",
-                      onPress: (value) {
-                        setState(() {
-                          password = value;
-                        });
-                      },
+                      controller: passwordController,
                       inputIcon: "assets/svg/auth/Lock.svg",
                       isPassword: true,
                     ),
@@ -150,22 +181,8 @@ class _LoginScreenState extends State<LoginScreen> {
               FarmSwapPrimaryButton(
                 isEnabled: true,
                 buttonTitle: "Login",
-                onPress: () async {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                        email: email!,
-                        password: password!,
-                      )
-                      .then(
-                        (value) => {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const DasboardScreen(),
-                            ),
-                          )
-                        },
-                      );
+                onPress: () {
+                  signIn();
                 },
               ),
             ],

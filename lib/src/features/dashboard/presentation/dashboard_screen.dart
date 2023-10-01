@@ -1,24 +1,27 @@
 import 'package:farmswap_v2/src/constants/colors.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
+import 'package:farmswap_v2/src/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common_widgets/input/farmswap_searchbar.dart';
 import '../../../constants/typography.dart';
 import '../../listing/presentation/list_item_card.dart';
 import '../../listing/presentation/list_item_horizontal_cart.dart';
 
-class DasboardScreen extends StatefulWidget {
-  const DasboardScreen({super.key});
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<DasboardScreen> createState() => _DasboardScreenState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DasboardScreenState extends State<DasboardScreen> {
-  final auth = FirebaseAuth.instance;
+class _DashboardScreenState extends State<DashboardScreen> {
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,10 @@ class _DasboardScreenState extends State<DasboardScreen> {
                                     Row(
                                       children: [
                                         poppinsText(
-                                          value: auth.currentUser?.email ?? "",
+                                          // value:
+                                          //     Provider.of<UserProvider>(context)
+                                          //         .username,
+                                          value: user.email ?? "",
                                           size: 14,
                                           isBold: true,
                                         ),
@@ -105,9 +111,20 @@ class _DasboardScreenState extends State<DasboardScreen> {
                                   ),
                                 ],
                               ),
-                              child: Align(
-                                child: SvgPicture.asset(
-                                  "assets/svg/dashboard/Icon Notification.svg",
+                              child: GestureDetector(
+                                onTap: () {
+                                  FirebaseAuth.instance.signOut();
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Align(
+                                  child: SvgPicture.asset(
+                                    "assets/svg/dashboard/Icon Notification.svg",
+                                  ),
                                 ),
                               ),
                             ),

@@ -8,7 +8,10 @@ import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
 
 class PasswordResetScreen extends StatelessWidget {
-  const PasswordResetScreen({super.key});
+  PasswordResetScreen({super.key});
+
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +51,16 @@ class PasswordResetScreen extends StatelessWidget {
                       SizedBox(height: height * 0.048),
                       FarmSwapTextField(
                         hintText: "New Password",
-                        onPress: (value) {},
+                        controller: passwordController,
                         isPassword: true,
                       ),
                       SizedBox(height: height * 0.024),
                       FarmSwapTextField(
                         hintText: "Confirm New Password",
-                        onPress: (value) {},
+                        controller: newPasswordController,
                         isPassword: true,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",

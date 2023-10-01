@@ -11,18 +11,18 @@ typedef OnTextChangedCallback = void Function(String value);
 // ignore: must_be_immutable
 class FarmSwapTextField extends StatefulWidget {
   final String hintText;
-  final OnTextChangedCallback onPress;
   String? inputIcon;
   bool isPassword;
   bool isNumber;
+  final TextEditingController controller;
 
   FarmSwapTextField({
     super.key,
     required this.hintText,
-    required this.onPress,
     this.inputIcon,
     this.isPassword = false,
     this.isNumber = false,
+    required this.controller,
   });
 
   @override
@@ -30,7 +30,6 @@ class FarmSwapTextField extends StatefulWidget {
 }
 
 class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
-  final TextEditingController _usernameController = TextEditingController();
   bool? viewPassword = false;
   @override
   Widget build(BuildContext context) {
@@ -41,12 +40,13 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
         ),
       ),
       child: TextField(
-        controller: _usernameController,
+        controller: widget.controller,
+
         cursorColor: FarmSwapGreen.normalGreen,
         obscureText: viewPassword! ? false : widget.isPassword,
         keyboardType:
             widget.isNumber == true ? TextInputType.number : TextInputType.text,
-        onChanged: (value) => {widget.onPress(value)},
+        // onChanged: (value) => {widget.onPress(value)},
         selectionHeightStyle: BoxHeightStyle.includeLineSpacingBottom,
         decoration: InputDecoration(
           contentPadding:

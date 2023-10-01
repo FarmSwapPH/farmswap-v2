@@ -4,12 +4,14 @@ class UserData {
   final String firstName;
   final String lastName;
   final String email;
+  final String location;
   final Gender gender;
   final String phone;
   final bool isFarmer;
   final bool isAdmin;
 
-  UserData({
+  UserData(
+    this.location, {
     required this.id,
     required this.firstName,
     required this.lastName,
