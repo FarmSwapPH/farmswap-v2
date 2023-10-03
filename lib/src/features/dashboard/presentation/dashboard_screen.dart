@@ -2,7 +2,7 @@ import 'package:farmswap_v2/src/constants/colors.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
-import 'package:farmswap_v2/src/providers/user_provider.dart';
+import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

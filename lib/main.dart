@@ -1,6 +1,8 @@
 import 'package:farmswap_v2/src/constants/colors.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:farmswap_v2/src/providers/chosen/chosen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 
 import 'src/features/authentication/presentation/splash_screen.dart';
-import 'package:farmswap_v2/src/providers/user_provider.dart';
+import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +21,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => UserProvider(),
-        ),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => ChosenProvider())
       ],
       child: const MyApp(),
     ),
@@ -39,7 +40,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: FarmSwapGreen.normalGreen),
         useMaterial3: true,
       ),
-      home: RegisterScreen(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const DashboardScreen();
+          } else {
+            return const SplashScreen();
+          }
+        },
+      ),
     );
   }
 }

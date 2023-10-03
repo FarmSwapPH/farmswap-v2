@@ -2,9 +2,11 @@ import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_a
 import 'package:farmswap_v2/src/features/authentication/presentation/upload_photo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
+import '../../../providers/chosen/chosen_provider.dart';
 
 class PaymentMethodScreen extends StatelessWidget {
   const PaymentMethodScreen({super.key});
@@ -13,6 +15,10 @@ class PaymentMethodScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    bool gcash = context.read<ChosenProvider>().gcash;
+    bool gpay = context.read<ChosenProvider>().gpay;
+    bool maya = context.read<ChosenProvider>().maya;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -44,26 +50,45 @@ class PaymentMethodScreen extends StatelessWidget {
                             "This data will be displayed in your\naccount profile for security",
                       ),
                       SizedBox(height: height * 0.024),
-                      PaymentCard(
-                        height: height,
-                        width: width,
-                        paymentPath: "assets/images/payment badges/gpay.png",
+                      GestureDetector(
+                        onTap: () {
+                          context.read<ChosenProvider>().setGpay = !gpay;
+                        },
+                        child: PaymentCard(
+                          height: height,
+                          width: width,
+                          paymentPath: "assets/images/payment badges/gpay.png",
+                          isBorder: true,
+                        ),
                       ),
                       SizedBox(height: height * 0.024),
-                      PaymentCard(
-                        height: height,
-                        width: width,
-                        paymentPath: "assets/images/payment badges/gcash.png",
+                      GestureDetector(
+                        onTap: () {
+                          context.read<ChosenProvider>().setGcash = !gcash;
+                        },
+                        child: PaymentCard(
+                          height: height,
+                          width: width,
+                          paymentPath: "assets/images/payment badges/gcash.png",
+                          isBorder: true,
+                        ),
                       ),
                       SizedBox(height: height * 0.024),
-                      PaymentCard(
-                        height: height,
-                        width: width,
-                        paymentPath: "assets/images/payment badges/maya.png",
+                      GestureDetector(
+                        onTap: () {
+                          context.read<ChosenProvider>().setMaya = !maya;
+                        },
+                        child: PaymentCard(
+                          height: height,
+                          width: width,
+                          paymentPath: "assets/images/payment badges/maya.png",
+                          isBorder: true,
+                        ),
                       ),
                       const Spacer(),
                       Center(
                         child: FarmSwapPrimaryButton(
+                          isEnabled: maya | gpay | gcash,
                           buttonTitle: "Next",
                           onPress: () {},
                         ),
@@ -86,19 +111,26 @@ class PaymentCard extends StatelessWidget {
     required this.height,
     required this.width,
     required this.paymentPath,
+    required this.isBorder,
   });
 
   final double height;
   final double width;
   final String paymentPath;
+  final bool isBorder;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(22),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1, // Adjust the border width as needed
+            color: isBorder ? Colors.green : Colors.transparent, // Green color
+          ),
+          borderRadius: BorderRadius.circular(22),
+        ),
         child: Container(
           height: height * 0.089,
           width: width,
