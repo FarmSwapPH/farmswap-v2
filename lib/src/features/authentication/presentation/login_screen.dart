@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_social_button.dart';
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
@@ -31,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: CircularProgressIndicator(),
       ),
     );
+
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
           email: emailController.text.trim(),
@@ -59,6 +61,21 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           },
         );
+
+    final loggedinUserID = FirebaseAuth.instance.currentUser;
+    final db = FirebaseFirestore.instance;
+
+    final customerInstance = db.collection("CustomerUsers");
+
+    final dataToInsert = <String, dynamic>{
+      "address": "Danao City, Cebu",
+      "birthDate": "11/22/1994",
+      "birthPlace": "Bohol",
+      "email": loggedinUserID!.email,
+      "userId": loggedinUserID.uid,
+    };
+
+    await customerInstance.add(dataToInsert);
   }
 
   @override

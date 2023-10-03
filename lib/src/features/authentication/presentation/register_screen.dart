@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../common_widgets/input/farmswap_text_field.dart';
@@ -27,14 +29,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
-
-  // @override
-  // void dispose() {
-  //   emailController.dispose(); // Dispose of the controller
-  //   passwordController.dispose(); // Dispose of the controller
-  //   usernameController.dispose(); // Dispose of the controller
-  //   super.dispose();
-  // }
 
   Future createUser() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
