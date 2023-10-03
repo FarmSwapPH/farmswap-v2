@@ -1,16 +1,21 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:farmswap_v2/src/constants/logo.dart';
-import 'package:farmswap_v2/src/features/authentication/domain/use_cases/create_user.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
+import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:farmswap_v2/src/providers/user_provider.dart';
+// import 'package:farmswap_v2/src/providers/user_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../common_widgets/input/farmswap_text_field.dart';
 import '../../../constants/typography.dart';
-import '../../dashboard/presentation/dashboard_screen.dart';
+// import '../../dashboard/presentation/dashboard_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -26,12 +31,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
 
-  @override
-  void dispose() {
-    emailController.dispose(); // Dispose of the controller
-    passwordController.dispose(); // Dispose of the controller
-    usernameController.dispose(); // Dispose of the controller
-    super.dispose();
+  // @override
+  // void dispose() {
+  //   emailController.dispose(); // Dispose of the controller
+  //   passwordController.dispose(); // Dispose of the controller
+  //   usernameController.dispose(); // Dispose of the controller
+  //   super.dispose();
+  // }
+
+  Future createUser() async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    userProvider.setEmail(emailController.text.trim());
+    userProvider.setUsername(usernameController.text.trim());
+    userProvider.setPassword(passwordController.text.trim());
+
+    // myEmail = emailController.text.trim();
+
+    print(
+        "${userProvider.email} ${userProvider.username} ${userProvider.email}");
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: ((context) => DashboardScreen()),
+      ),
+    );
   }
 
   @override
@@ -163,27 +195,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   isEnabled: agreeToTerms,
                   buttonTitle: "Create Account",
                   onPress: () {
-                    Provider.of<UserProvider>(context, listen: false)
-                        .setEmail(emailController.text.trim());
-                    Provider.of<UserProvider>(context)
-                        .setPassword(passwordController.text.trim());
-                    Provider.of<UserProvider>(context)
-                        .setUsername(emailController.text.trim());
-
-                    showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => LoginScreen()),
-                      ),
-                    );
+                    createUser();
                   },
                 ),
                 SizedBox(height: height * 0.012),
@@ -192,7 +204,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => LoginScreen()),
+                        builder: ((context) => DashboardScreen()),
                       ),
                     );
                   },

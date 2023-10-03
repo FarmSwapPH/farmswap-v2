@@ -21,7 +21,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  final user = FirebaseAuth.instance.currentUser!;
+  // final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +75,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Row(
                                       children: [
                                         poppinsText(
-                                          // value:
-                                          //     Provider.of<UserProvider>(context)
-                                          //         .username,
-                                          value: user.email ?? "",
+                                          value: context
+                                              .watch<UserProvider>()
+                                              .username,
+                                          // value: user.email ?? "",
                                           size: 14,
                                           isBold: true,
                                         ),

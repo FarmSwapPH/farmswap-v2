@@ -47,28 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC3cQnx7jnzq8M4JK7MlLBvn7ObnsQaTWg',
-    appId: '1:1043302948417:web:1078f65eb50aba47ad70c0',
-    messagingSenderId: '1043302948417',
-    projectId: 'farmswap-e7ea0',
-    authDomain: 'farmswap-e7ea0.firebaseapp.com',
-    storageBucket: 'farmswap-e7ea0.appspot.com',
+    apiKey: 'AIzaSyCH_x4XHqGnzdjoe8OwCpeaQ6u9TWtQ3Ec',
+    appId: '1:1095006869916:web:247631b47d516f63091059',
+    messagingSenderId: '1095006869916',
+    projectId: 'farmswap-678f3',
+    authDomain: 'farmswap-678f3.firebaseapp.com',
+    storageBucket: 'farmswap-678f3.appspot.com',
+    measurementId: 'G-CRW82P72M7',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBdFDklrrwbnROP_b85qhgzGZRRqH6R47U',
-    appId: '1:1043302948417:android:8825a63cee980808ad70c0',
-    messagingSenderId: '1043302948417',
-    projectId: 'farmswap-e7ea0',
-    storageBucket: 'farmswap-e7ea0.appspot.com',
+    apiKey: 'AIzaSyCeprMtzOTSFl_RH3CLRtI05OoZchmlS3U',
+    appId: '1:1095006869916:android:ffce1a62daa49815091059',
+    messagingSenderId: '1095006869916',
+    projectId: 'farmswap-678f3',
+    storageBucket: 'farmswap-678f3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD-F7ovRKZKFzFm2cYsOUoZlVLQqLAqR4g',
-    appId: '1:1043302948417:ios:161e89ecb3e886ecad70c0',
-    messagingSenderId: '1043302948417',
-    projectId: 'farmswap-e7ea0',
-    storageBucket: 'farmswap-e7ea0.appspot.com',
+    apiKey: 'AIzaSyBfrBabOlBSpxStMbEk5LeLN31afB2QwO4',
+    appId: '1:1095006869916:ios:0d0900ed61623739091059',
+    messagingSenderId: '1095006869916',
+    projectId: 'farmswap-678f3',
+    storageBucket: 'farmswap-678f3.appspot.com',
     iosBundleId: 'ph.farmswap.farmswapV2',
   );
 }

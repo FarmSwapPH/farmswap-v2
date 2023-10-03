@@ -1,4 +1,5 @@
 import 'package:farmswap_v2/src/constants/colors.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,16 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: FarmSwapGreen.normalGreen),
         useMaterial3: true,
       ),
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const DashboardScreen();
-          } else {
-            return const SplashScreen();
-          }
-        },
-      ),
+      home: RegisterScreen(),
     );
   }
 }
