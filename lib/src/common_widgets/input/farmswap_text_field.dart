@@ -90,8 +90,8 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
             borderRadius: BorderRadius.circular(15),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                width: 0.50, color: Color.fromARGB(255, 50, 202, 108)),
+            borderSide:
+                BorderSide(width: 0.50, color: FarmSwapGreen.normalGreen),
             borderRadius: BorderRadius.circular(15),
           ),
           errorBorder: OutlineInputBorder(

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "farmswap-e7ea0"
-  }
+    "beta": "farmswap-678f3",
+    "default": "farmswap-678f3"
+  },
+  "targets": {},
+  "etags": {}
 }

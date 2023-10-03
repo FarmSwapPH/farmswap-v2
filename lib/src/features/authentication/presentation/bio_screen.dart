@@ -2,8 +2,10 @@ import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_a
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
+import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 
 class BioScreen extends StatelessWidget {
@@ -17,6 +19,30 @@ class BioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    void fillBio() {
+      context.read<UserProvider>().setFirstName =
+          firstNameController.text.trim();
+      context.read<UserProvider>().setLastName = lastNameController.text.trim();
+      context.read<UserProvider>().setMobileNumber =
+          mobileNumberController.text.trim();
+
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: ((context) => const PaymentMethodScreen()),
+        ),
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -101,8 +127,11 @@ class BioScreen extends StatelessWidget {
                       const Spacer(),
                       Center(
                         child: FarmSwapPrimaryButton(
+                          isEnabled: true,
                           buttonTitle: "Next",
-                          onPress: () {},
+                          onPress: () {
+                            fillBio();
+                          },
                         ),
                       ),
                     ],
