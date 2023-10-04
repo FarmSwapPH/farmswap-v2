@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/colors.dart';
@@ -31,18 +32,18 @@ class HorizontalListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320 / 375 * width,
-      padding: const EdgeInsets.all(6),
-      constraints: const BoxConstraints(
-        maxWidth: 400,
-        maxHeight: 115,
-        minWidth: 320,
-        minHeight: 65,
+      width: 320.w,
+      padding: const EdgeInsets.all(6).w,
+      constraints: BoxConstraints(
+        maxWidth: 400.w,
+        maxHeight: 115.h,
+        minWidth: 320.w,
+        minHeight: 65.h,
       ),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10).r,
         ),
         shadows: const [
           BoxShadow(
@@ -58,12 +59,12 @@ class HorizontalListItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            width: 124 / 375 * width,
-            height: 100 / 812 * height,
-            constraints: const BoxConstraints(
-              maxWidth: 150,
-              minWidth: 94,
-              minHeight: 65,
+            width: 124.w,
+            height: 100.h,
+            constraints: BoxConstraints(
+              maxWidth: 150.w,
+              minWidth: 94.w,
+              minHeight: 65.h,
             ),
             child: Stack(
               children: [
@@ -76,7 +77,7 @@ class HorizontalListItem extends StatelessWidget {
                         ),
                         fit: BoxFit.cover,
                       ),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10).r,
                     ),
                   ),
                 ),
@@ -86,9 +87,9 @@ class HorizontalListItem extends StatelessWidget {
                   child: Container(
                     // width: 28,
                     // height: 10,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 2,
-                      horizontal: 5,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 2.h,
+                      horizontal: 5.w,
                     ),
                     decoration: ShapeDecoration(
                       color: const Color(0xFF14BE77),
@@ -105,7 +106,7 @@ class HorizontalListItem extends StatelessWidget {
                     ),
                     child: poppinsText(
                       value: promoLabel,
-                      size: 8 / 812 * height,
+                      size: 8.sp,
                       color: Colors.white,
                     ),
                   ),
@@ -113,8 +114,8 @@ class HorizontalListItem extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            width: 20,
+          SizedBox(
+            width: 20.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,64 +123,64 @@ class HorizontalListItem extends StatelessWidget {
             children: [
               farmSwapFont(
                 text: "8 hours : 12 minutes",
-                size: 18 / 812 * height,
+                size: 15.sp,
                 color: FarmSwapGreen.normalGreen,
               ),
               SizedBox(
-                height: 10 / 812 * height,
+                height: 10.h,
               ),
               SizedBox(
                 child: poppinsText(
                   value: productName,
-                  size: 12 / 812 * height,
+                  size: 12.sp,
                 ),
               ),
               SizedBox(
-                height: 10 / 812 * height,
+                height: 10.sp,
               ),
               poppinsText(
                 value: '$productDistance km | ⭐ $productRating ($totalReviews)',
-                size: 10 / 812 * height,
+                size: 10.sp,
                 color: const Color(0xFF5F5D6B),
               ),
               SizedBox(
-                height: 10 / 812 * height,
+                height: 10.h,
               ),
               Row(
                 children: [
                   poppinsText(
                     value: productPrice,
-                    size: 14 / 812 * height,
+                    size: 14.sp,
                     isBold: true,
                     color: FarmSwapGreen.normalGreen,
                   ),
-                  const SizedBox(
-                    width: 3,
+                  SizedBox(
+                    width: 3.w,
                   ),
                   poppinsText(
                     value: "|",
-                    size: 10 / 812 * height,
+                    size: 10.sp,
                     color: const Color(0xFF5F5D6B),
                   ),
-                  const SizedBox(
-                    width: 3,
+                  SizedBox(
+                    width: 3.w,
                   ),
                   SizedBox(
                     child: Align(
                       child: SvgPicture.asset(
-                        height: 15,
-                        width: 15,
+                        height: 15.h,
+                        width: 15.w,
                         "assets/svg/dashboard/delivery icon.svg",
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 3,
+                  SizedBox(
+                    width: 3.w,
                   ),
                   poppinsText(
                     value: "₱20.00",
-                    size: 10 / 812 * height,
+                    size: 10.sp,
                     color: const Color(0xFF5F5D6B),
                   ),
                 ],

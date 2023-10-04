@@ -1,18 +1,23 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_social_button.dart';
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/forgot_password_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../main.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/logo.dart';
 
@@ -54,14 +59,12 @@ class _LoginScreenState extends State<LoginScreen> {
         child: CircularProgressIndicator(),
       ),
     );
-    // Trigger the authentication flow
+
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
 
-    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
@@ -72,7 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
     context.read<UserProvider>().setFirstName =
         person.user!.displayName as String;
 
-    // Once signed in, return the UserCredential
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.pushReplacement(
+      MaterialPageRoute(builder: (context) => const DashboardScreen()),
+    );
+
     return person;
   }
 
@@ -85,34 +92,30 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        )
-        .then(
-          (value) => {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const DashboardScreen(),
-              ),
-            )
-          },
-        )
-        .onError(
-          (error, stackTrace) => {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) => Center(
-                child: Text(
-                  error.toString(),
-                ),
-              ),
-            ),
-          },
-        );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      // Navigator.pushReplacement(context,
+      //     MaterialPageRoute(builder: ((context) => const DashboardScreen())));
+    } catch (e) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+          child: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.pushReplacement(
+      MaterialPageRoute(builder: (context) => const DashboardScreen()),
+    );
 
     // final loggedinUserID = FirebaseAuth.instance.currentUser;
     // final db = FirebaseFirestore.instance;
@@ -128,6 +131,14 @@ class _LoginScreenState extends State<LoginScreen> {
     // };
 
     // await customerInstance.add(dataToInsert);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -167,8 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: height * 0.024),
               Column(
                 children: [
-                  farmSwapFont(
-                      text: "Login To Your Account", size: height * 0.024),
+                  farmSwapFont(text: "Login To Your Account", size: 20),
                   SizedBox(height: height * 0.024),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -186,6 +196,64 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: passwordController,
                       inputIcon: "assets/svg/auth/Lock.svg",
                       isPassword: true,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        SizedBox(height: height * 0.044),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterScreen(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Create Account',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                color: const Color(0xFF53E78B),
+                                fontSize: height * 0.014,
+                                fontWeight: FontWeight.w500,
+                                // decoration: TextDecoration.underline,
+                                decorationStyle: TextDecorationStyle.solid,
+                                decorationColor: const Color(0xFF53E78B),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ForgotPasswordScreen(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Forgot Your Password?',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                color: const Color(0xFF53E78B),
+                                fontSize: height * 0.014,
+                                fontWeight: FontWeight.w500,
+                                // decoration: TextDecoration.underline,
+                                decorationStyle: TextDecorationStyle.solid,
+                                decorationColor: const Color(0xFF53E78B),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 ],
@@ -221,7 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       logoPath: "assets/images/logo/fb.png",
                       buttonTitle: "Facebook",
                       onPress: () {
-                        _signInWithFacebook();
+                        // _signInWithFacebook();
                       },
                     ),
                     const SizedBox(
@@ -235,31 +303,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   ],
-                ),
-              ),
-              SizedBox(height: height * 0.024),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ForgotPasswordScreen(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'Forgot Your Password?',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      color: const Color(0xFF53E78B),
-                      fontSize: height * 0.014,
-                      fontWeight: FontWeight.w500,
-                      decoration: TextDecoration.underline,
-                      decorationStyle: TextDecorationStyle.solid,
-                      decorationColor: const Color(0xFF53E78B),
-                    ),
-                  ),
                 ),
               ),
             ],

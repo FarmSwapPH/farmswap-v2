@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:farmswap_v2/src/constants/logo.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/bio_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
@@ -12,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 
+import '../../../../main.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../common_widgets/input/farmswap_text_field.dart';
 import '../../../constants/typography.dart';
@@ -31,12 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController usernameController = TextEditingController();
 
   Future createUser() async {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    userProvider.setEmail = emailController.text.trim();
-    userProvider.setUsername = usernameController.text.trim();
-    userProvider.setPassword = passwordController.text.trim();
-
-    showDialog(
+    await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => const Center(
@@ -44,12 +38,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: ((context) => LoginScreen()),
-      ),
+    // final userProvider = Provider.of<UserProvider>(context, listen: false);
+    // userProvider.setEmail = emailController.text.trim();
+    // userProvider.setUsername = usernameController.text.trim();
+    // userProvider.setPassword = passwordController.text.trim();
+
+    try {
+      final instance = FirebaseAuth.instance;
+      final createdUserCredential = instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      final signInUser = await instance
+          .signInWithCredential(createdUserCredential as AuthCredential);
+
+      final loggedinUserID = signInUser.user;
+      final db = FirebaseFirestore.instance;
+
+      final customerInstance = db.collection("CustomerUsers");
+
+      final dataToInsert = <String, dynamic>{
+        "address": "Guinholgan",
+        "birthDate": "11/22/1994",
+        "birthPlace": "Bogo",
+        "email": loggedinUserID!.email,
+        "userId": loggedinUserID.uid,
+      };
+
+      await customerInstance.add(dataToInsert);
+    } catch (e) {
+      print(e.toString());
+    }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.pushReplacement(
+      MaterialPageRoute(builder: (context) => const DashboardScreen()),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override

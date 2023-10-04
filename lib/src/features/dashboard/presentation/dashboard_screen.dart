@@ -6,7 +6,9 @@ import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_widgets/input/farmswap_searchbar.dart';
@@ -24,6 +26,15 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   // final user = FirebaseAuth.instance.currentUser!;
 
+  Future signOut() async {
+    // Get the GoogleSignIn instance.
+    final googleSignIn = GoogleSignIn();
+
+    // Sign out the user.
+    await googleSignIn.signOut();
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -32,8 +43,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SizedBox(
-          height: height,
-          width: width,
           child: Stack(
             children: [
               Positioned.fill(
@@ -46,12 +55,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               Positioned(
                 child: Container(
-                  padding: const EdgeInsets.all(25),
+                  padding: const EdgeInsets.all(25).w,
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: height * 0.024),
+                        SizedBox(height: 20.h),
                         Row(
                           children: [
                             Row(
@@ -63,8 +72,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     "assets/images/png/farmer.png",
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 5,
+                                SizedBox(
+                                  width: 5.w,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,15 +86,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       children: [
                                         poppinsText(
                                           value: context
-                                                  .watch<UserProvider>()
-                                                  .firstName ??
-                                              "Person",
+                                              .watch<UserProvider>()
+                                              .firstName,
                                           // value: user.email ?? "",
-                                          size: 14,
+                                          size: 14.sp,
                                           isBold: true,
                                         ),
-                                        const SizedBox(
-                                          width: 3,
+                                        SizedBox(
+                                          width: 3.w,
                                         ),
                                         Icon(
                                           Icons.arrow_drop_down_rounded,
@@ -99,8 +107,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             const Spacer(),
                             Container(
-                              width: 45,
-                              height: 45,
+                              width: 45.w,
+                              height: 45.h,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
@@ -115,7 +123,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  FirebaseAuth.instance.signOut();
+                                  signOut();
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -132,21 +140,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: height * 0.022),
+                        SizedBox(height: 20.h),
                         SizedBox(
-                          width: width,
                           child: Row(
                             children: [
                               SizedBox(
-                                width: 267 / 375 * width,
+                                width: 267.w,
                                 child: FarmSwapSearchbar(
                                   onPress: () {},
                                   inputIcon:
                                       "assets/svg/dashboard/Icon Search.svg",
                                 ),
                               ),
-                              const SizedBox(
-                                width: 9,
+                              SizedBox(
+                                width: 9.w,
                               ),
                               Material(
                                 color: Colors.transparent,
@@ -154,13 +161,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   borderRadius: BorderRadius.circular(15),
                                   onTap: () {},
                                   child: Container(
-                                    width: 49,
-                                    height: 50,
+                                    width: 49.w,
+                                    height: 50.h,
                                     decoration: ShapeDecoration(
                                       color: const Color(0xFFF9A84D)
                                           .withOpacity(0.1),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius:
+                                            BorderRadius.circular(15).w,
                                       ),
                                     ),
                                     child: Align(
@@ -176,10 +184,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: height * 0.022,
+                          height: 20.h,
                         ),
                         Container(
-                          height: 150 / 812 * height,
+                          height: 150.h,
                           decoration: ShapeDecoration(
                             gradient: const LinearGradient(
                               begin: Alignment(0.99, -0.15),
@@ -187,7 +195,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               colors: [Color(0xFF53E78B), Color(0xFF14BE77)],
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(16).r,
                             ),
                           ),
                           child: Stack(
@@ -204,13 +212,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     SizedBox(
-                                      width: 150 / 375 * width,
+                                      width: 130.w,
                                       child: Image.asset(
                                         "assets/images/png/onion.png",
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 15,
+                                    SizedBox(
+                                      width: 15.w,
                                     ),
                                     Column(
                                       mainAxisAlignment:
@@ -220,30 +228,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       children: [
                                         poppinsText(
                                           value: "September Onion\nPromo Now!",
-                                          size: 17 / 812 * height,
+                                          size: 17.sp,
                                           color: Colors.white,
                                           isBold: true,
                                         ),
                                         SizedBox(
-                                          height: 14 / 812 * height,
+                                          height: 14.h,
                                         ),
                                         Material(
                                           borderRadius:
-                                              BorderRadius.circular(6),
+                                              BorderRadius.circular(6).r,
                                           child: InkWell(
                                             onTap: () {},
                                             child: Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                vertical: 10,
-                                                horizontal: 20,
+                                              padding: EdgeInsets.symmetric(
+                                                vertical: 10.w,
+                                                horizontal: 20.h,
                                               ),
                                               decoration: ShapeDecoration(
                                                 color: Colors.white,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            6)),
+                                                        BorderRadius.circular(6)
+                                                            .r),
                                                 shadows: const [
                                                   BoxShadow(
                                                     color: Color(0x21000000),
@@ -258,7 +265,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                 style: TextStyle(
                                                   color:
                                                       FarmSwapGreen.normalGreen,
-                                                  fontSize: 12,
+                                                  fontSize: 12.sp,
                                                   fontFamily: 'Poppins',
                                                   fontWeight: FontWeight.w700,
                                                   height: 1.31,
@@ -276,11 +283,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 25 / 812 * height,
+                          height: 25.h,
                         ),
                         CircleCategory(height: height),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -304,8 +311,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 );
                               },
                             ),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 20.w,
                             ),
                             ListItemCard(
                               height: height,
@@ -323,7 +330,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -355,18 +362,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         FarmSwapSectionTitle(
                           height: height,
                           title: 'Recommended 😍',
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         ScrollableRecommendedBadges(height: height),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -381,8 +388,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               productDistance: "1.2",
                               totalReviews: "20",
                             ),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 20.w,
                             ),
                             ListItemCard(
                               height: height,
@@ -400,14 +407,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         FarmSwapSectionTitle(
                           height: height,
                           title: 'For Swaps 🤝',
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -423,8 +430,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 productDistance: "1.2",
                                 totalReviews: "20",
                               ),
-                              const SizedBox(
-                                width: 20,
+                              SizedBox(
+                                width: 20.w,
                               ),
                               HorizontalListItem(
                                 width: width,
@@ -441,7 +448,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -456,8 +463,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               productDistance: "1.2",
                               totalReviews: "20",
                             ),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 20.w,
                             ),
                             ListItemCard(
                               height: height,
@@ -475,7 +482,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: 20 / 812 * height,
+                          height: 20.h,
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -490,8 +497,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               productDistance: "1.2",
                               totalReviews: "20",
                             ),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 20.w,
                             ),
                             ListItemCard(
                               height: height,
@@ -542,7 +549,7 @@ class CircleCategory extends StatelessWidget {
           text: "Veggies",
         ),
         SizedBox(
-          width: 20 * 812 / height,
+          width: 20.w,
         ),
         CategoryIcon(
           height: height,
@@ -550,7 +557,7 @@ class CircleCategory extends StatelessWidget {
           text: "Fruits",
         ),
         SizedBox(
-          width: 20 * 812 / height,
+          width: 20.w,
         ),
         CategoryIcon(
           height: height,
@@ -558,7 +565,7 @@ class CircleCategory extends StatelessWidget {
           text: "Spices",
         ),
         SizedBox(
-          width: 20 * 812 / height,
+          width: 20.w,
         ),
         CategoryIcon(
           height: height,
@@ -566,7 +573,7 @@ class CircleCategory extends StatelessWidget {
           text: "Seeds",
         ),
         SizedBox(
-          width: 20 * 812 / height,
+          width: 20.w,
         ),
       ],
     );
@@ -591,22 +598,22 @@ class ScrollableRecommendedBadges extends StatelessWidget {
             height: height,
             text: '✅ Fresh',
           ),
-          const SizedBox(
-            width: 10,
+          SizedBox(
+            width: 10.w,
           ),
           OutlinedRecommendBadge(
             height: height,
             text: "✨ Hot Pick",
           ),
-          const SizedBox(
-            width: 10,
+          SizedBox(
+            width: 10.w,
           ),
           OutlinedRecommendBadge(
             height: height,
             text: "🦐 Dried Goods",
           ),
-          const SizedBox(
-            width: 10,
+          SizedBox(
+            width: 10.h,
           ),
           OutlinedRecommendBadge(
             height: height,
@@ -636,22 +643,22 @@ class OutlinedRecommendBadge extends StatelessWidget {
         onTap: () {},
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 13,
+          padding: EdgeInsets.symmetric(
+            vertical: 5.h,
+            horizontal: 13.w,
           ),
           decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
               side: BorderSide(
-                width: 0.50,
+                width: 0.50.w,
                 color: FarmSwapGreen.normalGreen,
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20).r,
             ),
           ),
           child: poppinsText(
             value: text,
-            size: 12 / 812 * height,
+            size: 12.sp,
             color: FarmSwapGreen.normalGreen,
           ),
         ),
@@ -678,19 +685,19 @@ class RecommendBadge extends StatelessWidget {
         onTap: () {},
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 13,
+          padding: EdgeInsets.symmetric(
+            vertical: 5.h,
+            horizontal: 13.w,
           ),
           decoration: ShapeDecoration(
             color: FarmSwapGreen.normalGreen,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20).r,
             ),
           ),
           child: poppinsText(
             value: text,
-            size: 12 / 812 * height,
+            size: 12.sp,
             color: Colors.white,
           ),
         ),
@@ -719,16 +726,16 @@ class CategoryIcon extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundColor: FarmSwapGreen.normalGreen,
-          radius: 30,
+          radius: 30.r,
           child: CircleAvatar(
-            radius: 28,
+            radius: 28.r,
             backgroundImage: AssetImage(
               imagePath,
             ),
           ),
         ),
         SizedBox(
-          height: 10 / 812 * height,
+          height: 10.h,
         ),
         baseText(value: text),
       ],

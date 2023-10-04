@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:google_fonts/google_fonts.dart";
 
 Text farmSwapFont(
@@ -21,9 +22,9 @@ Text farmSwapFont(
 Text farmSwapFontHeading1({required String text}) {
   return Text(
     text,
-    style: const TextStyle(
+    style: TextStyle(
       color: Colors.black,
-      fontSize: 65,
+      fontSize: 65.sp,
       fontFamily: 'Viga',
       fontWeight: FontWeight.w800,
       height: 1.20,
@@ -34,9 +35,9 @@ Text farmSwapFontHeading1({required String text}) {
 Text farmSwapFontHeading2({required String text}) {
   return Text(
     text,
-    style: const TextStyle(
+    style: TextStyle(
       color: Colors.black,
-      fontSize: 52,
+      fontSize: 52.sp,
       fontFamily: 'Viga',
       fontWeight: FontWeight.w800,
       height: 1.20,
@@ -50,7 +51,7 @@ Text screenTitle({required String value, required double height}) {
     style: GoogleFonts.poppins(
       textStyle: TextStyle(
         color: const Color(0xFF09051C),
-        fontSize: 24 / 812 * height,
+        fontSize: 24.sp,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.50,
       ),
@@ -64,7 +65,7 @@ Text baseText({required String value, Color color = Colors.black}) {
     style: GoogleFonts.poppins(
       textStyle: TextStyle(
         color: color,
-        fontSize: 12,
+        fontSize: 12.sp,
         letterSpacing: 0.50,
       ),
     ),
@@ -81,7 +82,7 @@ Text poppinsText(
     style: GoogleFonts.poppins(
       textStyle: TextStyle(
         color: color ?? const Color(0xFF09051C),
-        fontSize: size,
+        fontSize: size.sp,
         fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
         letterSpacing: 0.50,
         height: 1.20,
@@ -108,7 +109,7 @@ class FarmSwapSectionTitle extends StatelessWidget {
       children: [
         poppinsText(
           value: title,
-          size: 15 / 812 * height,
+          size: 15.sp,
           isBold: true,
         ),
         const Spacer(),
@@ -116,7 +117,7 @@ class FarmSwapSectionTitle extends StatelessWidget {
           onTap: onPress,
           child: poppinsText(
             value: 'See All',
-            size: 15 / 812 * height,
+            size: 15.sp,
             color: const Color(0xFF14BE77),
           ),
         ),
