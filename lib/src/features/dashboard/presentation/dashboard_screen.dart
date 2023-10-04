@@ -4,6 +4,7 @@ import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart'
 import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -76,8 +77,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       children: [
                                         poppinsText(
                                           value: context
-                                              .watch<UserProvider>()
-                                              .username,
+                                                  .watch<UserProvider>()
+                                                  .firstName ??
+                                              "Person",
                                           // value: user.email ?? "",
                                           size: 14,
                                           isBold: true,
@@ -288,7 +290,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               width: width,
                               productName: "Chinese Kangkong",
                               productImage: "assets/images/category/pechay.jpg",
-                              productPrice: "₱ 50.00",
+                              productPrice: "₱50.00",
                               productRating: "4.5",
                               productDistance: "1.2",
                               totalReviews: "20",

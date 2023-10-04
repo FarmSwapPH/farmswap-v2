@@ -1,4 +1,5 @@
 import 'package:farmswap_v2/src/constants/colors.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/register_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return const DashboardScreen();
           } else {
-            return const SplashScreen();
+            return const LoginScreen();
           }
         },
       ),
