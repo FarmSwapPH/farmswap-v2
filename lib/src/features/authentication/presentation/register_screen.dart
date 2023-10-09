@@ -38,11 +38,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
 
-    // final userProvider = Provider.of<UserProvider>(context, listen: false);
-    // userProvider.setEmail = emailController.text.trim();
-    // userProvider.setUsername = usernameController.text.trim();
-    // userProvider.setPassword = passwordController.text.trim();
-
     try {
       final instance = FirebaseAuth.instance;
       final createdUserCredential = instance.createUserWithEmailAndPassword(
