@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_social_button.dart';
 import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
@@ -10,7 +9,6 @@ import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
