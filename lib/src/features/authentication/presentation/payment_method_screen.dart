@@ -22,8 +22,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    var choice = context.read<ChosenProvider>();
-    var watchChoice = context.watch<ChosenProvider>();
+    var choice = context.read<PaymentChosenProvider>();
+    var watchChoice = context.watch<PaymentChosenProvider>();
 
     return Scaffold(
       resizeToAvoidBottomInset: true,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../dashboard/presentation/dashboard_screen.dart';
 
 // ignore: must_be_immutable
@@ -16,35 +18,31 @@ class SuccessScreen extends StatefulWidget {
 }
 
 class _SuccessScreenState extends State<SuccessScreen> {
-  void nextScreen() async {
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: ((context) => const DashboardScreen()),
-          ),
-        );
-      },
-    );
-  }
+  // void nextScreen() async {
+  //   Future.delayed(
+  //     const Duration(seconds: 3),
+  //     () {
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: ((context) => const DashboardScreen()),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    nextScreen();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   nextScreen();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          height: height,
-          width: width,
           child: Stack(
             children: [
               Positioned.fill(
@@ -55,13 +53,12 @@ class _SuccessScreenState extends State<SuccessScreen> {
               ),
               Positioned(
                 child: SizedBox(
-                  width: width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset("assets/svg/success/success-icon.svg"),
-                      SizedBox(height: height * 0.04),
+                      SizedBox(height: 32.h),
                       ShaderMask(
                         shaderCallback: (Rect bounds) {
                           return const LinearGradient(
@@ -84,7 +81,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: height * 0.02),
+                      SizedBox(height: 2.h),
                       Text(
                         widget.subtitle ?? 'Your Profile Is Ready To Use',
                         textAlign: TextAlign.center,
@@ -96,7 +93,25 @@ class _SuccessScreenState extends State<SuccessScreen> {
                             height: 1.31,
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(
+                        height: 192.h,
+                      ),
+                      Center(
+                        child: FarmSwapPrimaryButton(
+                          buttonTitle: "Next",
+                          // ignore: unnecessary_null_comparison
+                          isEnabled: true,
+                          onPress: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DashboardScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),

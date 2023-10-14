@@ -1,6 +1,11 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/choose_user_type_screen.dart';
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -137,6 +142,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                                   onTap: () async {
                                     final locRes = await _getLocation();
 
+                                    // ignore: use_build_context_synchronously
                                     context.read<UserProvider>().setAddress =
                                         "${locRes.latitude.toString()},${locRes.longitude.toString()}";
                                   },

@@ -9,6 +9,7 @@ import 'package:farmswap_v2/src/features/dashboard/presentation/dashboard_screen
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -114,21 +115,6 @@ class _LoginScreenState extends State<LoginScreen> {
     navigatorKey.currentState!.pushReplacement(
       MaterialPageRoute(builder: (context) => const DashboardScreen()),
     );
-
-    // final loggedinUserID = FirebaseAuth.instance.currentUser;
-    // final db = FirebaseFirestore.instance;
-
-    // final customerInstance = db.collection("CustomerUsers");
-
-    // final dataToInsert = <String, dynamic>{
-    //   "address": "Danao City, Cebu",
-    //   "birthDate": "11/22/1994",
-    //   "birthPlace": "Bohol",
-    //   "email": loggedinUserID!.email,
-    //   "userId": loggedinUserID.uid,
-    // };
-
-    // await customerInstance.add(dataToInsert);
   }
 
   @override
@@ -141,7 +127,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -149,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.36,
+                height: 292.h,
                 child: Stack(
                   children: [
                     Positioned(
@@ -173,20 +158,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: height * 0.024),
+              SizedBox(height: 20.h),
               Column(
                 children: [
-                  farmSwapFont(text: "Login To Your Account", size: 20),
-                  SizedBox(height: height * 0.024),
+                  farmSwapFont(text: "Login To Your Account", size: 20.sp),
+                  SizedBox(height: 20.h),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    margin: EdgeInsets.symmetric(horizontal: 20.w),
                     child: FarmSwapTextField(
                       hintText: "Email",
                       inputIcon: "assets/svg/auth/Message.svg",
                       controller: emailController,
+                      validator: null,
                     ),
                   ),
-                  SizedBox(height: height * 0.024),
+                  SizedBox(height: 20.h),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: FarmSwapTextField(
@@ -194,13 +180,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: passwordController,
                       inputIcon: "assets/svg/auth/Lock.svg",
                       isPassword: true,
+                      validator: null,
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       children: [
-                        SizedBox(height: height * 0.044),
+                        SizedBox(height: 35.h),
                         GestureDetector(
                           onTap: () {
                             Navigator.pushReplacement(
@@ -216,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: GoogleFonts.poppins(
                               textStyle: TextStyle(
                                 color: const Color(0xFF53E78B),
-                                fontSize: height * 0.014,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                                 // decoration: TextDecoration.underline,
                                 decorationStyle: TextDecorationStyle.solid,
@@ -242,7 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: GoogleFonts.poppins(
                               textStyle: TextStyle(
                                 color: const Color(0xFF53E78B),
-                                fontSize: height * 0.014,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                                 // decoration: TextDecoration.underline,
                                 decorationStyle: TextDecorationStyle.solid,
@@ -256,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   )
                 ],
               ),
-              SizedBox(height: height * 0.024),
+              SizedBox(height: 20.h),
               FarmSwapPrimaryButton(
                 isEnabled: true,
                 buttonTitle: "Login",
@@ -265,14 +252,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: height * 0.024),
+                margin: EdgeInsets.symmetric(vertical: 20.h),
                 child: Text(
                   'Or Continue With',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                       color: const Color(0xFF09051C),
-                      fontSize: height * 0.014,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -290,8 +277,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         // _signInWithFacebook();
                       },
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     FarmSwapSocialButton(
                       logoPath: "assets/images/logo/google.png",

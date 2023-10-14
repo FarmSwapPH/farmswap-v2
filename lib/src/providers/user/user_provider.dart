@@ -18,12 +18,11 @@ class UserProvider with ChangeNotifier {
   String? _firstName;
   String? _lastName;
   String? _idUrl;
-  List? _userAcc;
   String? _username;
   String? _profileUrl;
   String? _registrationDate;
   String? _userId;
-  String? _userRole;
+  bool _isFarmer = false;
   String? _password;
   XFile? _profilePhoto;
 
@@ -93,4 +92,11 @@ class UserProvider with ChangeNotifier {
   }
 
   String? get address => _address;
+
+  set setIsFarmer(bool chosen) {
+    _isFarmer = chosen;
+    notifyListeners();
+  }
+
+  bool get isFarmer => _isFarmer;
 }
