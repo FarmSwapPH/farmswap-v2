@@ -29,49 +29,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
 
-  Future createUser() async {
-    await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
-    try {
-      final instance = FirebaseAuth.instance;
-      final createdUserCredential = instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
-      final signInUser = await instance
-          .signInWithCredential(createdUserCredential as AuthCredential);
-
-      final loggedinUserID = signInUser.user;
-      final db = FirebaseFirestore.instance;
-
-      final customerInstance = db.collection("CustomerUsers");
-
-      final dataToInsert = <String, dynamic>{
-        "address": "Guinholgan",
-        "birthDate": "11/22/1994",
-        "birthPlace": "Bogo",
-        "email": loggedinUserID!.email,
-        "userId": loggedinUserID.uid,
-      };
-
-      await customerInstance.add(dataToInsert);
-    } catch (e) {
-      print(e.toString());
-    }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
-    navigatorKey.currentState!.pushReplacement(
-      MaterialPageRoute(builder: (context) => const DashboardScreen()),
-    );
-  }
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -85,6 +42,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    void initializeUser() {
+      var user = context.read<UserProvider>();
+      user.setUsername = usernameController.text.trim();
+      user.setEmail = emailController.text.trim();
+      user.setPassword = passwordController.text.trim();
+    }
+
+    Future createUser() async {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      initializeUser();
+
+      // navigatorKey.currentState!.popUntil((route) => route.isFirst);
+      navigatorKey.currentState!.pushReplacement(
+        MaterialPageRoute(builder: (context) => BioScreen()),
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(

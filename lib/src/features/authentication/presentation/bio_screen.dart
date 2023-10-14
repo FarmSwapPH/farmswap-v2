@@ -4,28 +4,66 @@ import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 
-class BioScreen extends StatelessWidget {
-  BioScreen({super.key});
+class BioScreen extends StatefulWidget {
+  const BioScreen({super.key});
 
+  @override
+  State<BioScreen> createState() => _BioScreenState();
+}
+
+class _BioScreenState extends State<BioScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
 
+  Future initValues() async {
+    var user = context.read<UserProvider>();
+    String firstName = user.firstName;
+    String lastName = user.lastName;
+    String mobileNumber = user.mobileNumber;
+
+    if (firstName != null || firstName != "") {
+      firstNameController.text = firstName;
+    }
+    if (lastName != null || lastName != "") {
+      lastNameController.text = lastName;
+    }
+    if (mobileNumber != null || mobileNumber != "") {
+      mobileNumberController.text = mobileNumber;
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await initValues();
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    firstNameController.dispose();
+    lastNameController.dispose();
+    mobileNumberController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    var user = context.read<UserProvider>();
 
     void fillBio() {
-      context.read<UserProvider>().setFirstName =
-          firstNameController.text.trim();
-      context.read<UserProvider>().setLastName = lastNameController.text.trim();
-      context.read<UserProvider>().setMobileNumber =
-          mobileNumberController.text.trim();
+      user.setFirstName = firstNameController.text.trim();
+      user.setLastName = lastNameController.text.trim();
+      user.setMobileNumber = mobileNumberController.text.trim();
 
       showDialog(
         context: context,
@@ -47,8 +85,6 @@ class BioScreen extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SizedBox(
-          height: height,
-          width: width,
           child: Stack(
             children: [
               Positioned.fill(
@@ -66,16 +102,16 @@ class BioScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const FarmSwapBackArrowButton(),
-                      SizedBox(height: height * 0.024),
+                      SizedBox(height: 20.h),
                       screenTitle(
-                          value: "Fill in your bio to get\nstarted",
-                          height: height),
-                      SizedBox(height: height * 0.024),
+                        value: "Fill in your bio to get\nstarted",
+                      ),
+                      SizedBox(height: 20.h),
                       baseText(
                         value:
                             "This data will be displayed in your\naccount profile for security",
                       ),
-                      SizedBox(height: height * 0.024),
+                      SizedBox(height: 20.h),
                       Container(
                         decoration: const BoxDecoration(
                           boxShadow: [
@@ -91,7 +127,7 @@ class BioScreen extends StatelessWidget {
                           controller: firstNameController,
                         ),
                       ),
-                      SizedBox(height: height * 0.024),
+                      SizedBox(height: 20.h),
                       Container(
                         decoration: const BoxDecoration(
                           boxShadow: [
@@ -107,7 +143,7 @@ class BioScreen extends StatelessWidget {
                           controller: lastNameController,
                         ),
                       ),
-                      SizedBox(height: height * 0.024),
+                      SizedBox(height: 20.h),
                       Container(
                         decoration: const BoxDecoration(
                           boxShadow: [

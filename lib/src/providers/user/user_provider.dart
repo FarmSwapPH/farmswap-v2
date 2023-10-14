@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class AddressLocation {
+  AddressLocation({required this.lat, required this.long});
+
+  String? lat;
+  String? long;
+}
 
 class UserProvider with ChangeNotifier {
   String? _address;
@@ -17,6 +25,7 @@ class UserProvider with ChangeNotifier {
   String? _userId;
   String? _userRole;
   String? _password;
+  XFile? _profilePhoto;
 
 // email
   set setEmail(String email) {
@@ -24,7 +33,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get email => _email ?? "email";
+  String get email => _email ?? "";
 
 // username
   set setUsername(String username) {
@@ -32,7 +41,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get username => _username ?? "username";
+  String get username => _username ?? "";
 
 // password
   set setPassword(String password) {
@@ -40,7 +49,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get password => _password ?? "password";
+  String get password => _password ?? "";
 
 // firstName
   set setFirstName(String firstName) {
@@ -48,7 +57,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get firstName => _firstName ?? "firstname";
+  String get firstName => _firstName ?? "";
 
 // lastname
   set setLastName(String lastName) {
@@ -56,7 +65,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get lastName => _lastName ?? "lastname";
+  String get lastName => _lastName ?? "";
 
 // mobilenumber
   set setMobileNumber(String mobileNum) {
@@ -64,5 +73,24 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get mobileNumber => _contactNumber ?? "contact number";
+  String get mobileNumber => _contactNumber ?? "";
+
+  set setProfilePhoto(XFile photo) {
+    _profilePhoto = photo;
+    notifyListeners();
+  }
+
+  void setProfilePhotoNull() {
+    _profilePhoto = null;
+    notifyListeners();
+  }
+
+  XFile? get profilePhoto => _profilePhoto;
+
+  set setAddress(String address) {
+    _address = address;
+    notifyListeners();
+  }
+
+  String? get address => _address;
 }

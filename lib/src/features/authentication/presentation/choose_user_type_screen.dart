@@ -38,7 +38,8 @@ class ChooseUserTypeScreen extends StatelessWidget {
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
                       screenTitle(
-                          value: "What best describes\nyou?", height: height),
+                        value: "What best describes\nyou?",
+                      ),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

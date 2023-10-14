@@ -7,6 +7,7 @@ class ChosenProvider extends ChangeNotifier {
 
   set setGcash(bool chosen) {
     _gcash = chosen;
+
     notifyListeners();
   }
 
@@ -14,6 +15,7 @@ class ChosenProvider extends ChangeNotifier {
 
   set setMaya(bool chosen) {
     _maya = chosen;
+
     notifyListeners();
   }
 
@@ -21,6 +23,7 @@ class ChosenProvider extends ChangeNotifier {
 
   set setGpay(bool chosen) {
     _gpay = chosen;
+
     notifyListeners();
   }
 

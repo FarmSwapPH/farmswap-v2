@@ -45,7 +45,7 @@ Text farmSwapFontHeading2({required String text}) {
   );
 }
 
-Text screenTitle({required String value, required double height}) {
+Text screenTitle({required String value}) {
   return Text(
     value,
     style: GoogleFonts.poppins(
