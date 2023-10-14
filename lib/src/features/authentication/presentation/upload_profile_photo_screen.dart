@@ -40,7 +40,8 @@ class UploadProfilePhotoScreen extends StatelessWidget {
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
                       screenTitle(
-                          value: "Upload Your Photo\nProfile", height: height),
+                        value: "Upload Your Photo\nProfile",
+                      ),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

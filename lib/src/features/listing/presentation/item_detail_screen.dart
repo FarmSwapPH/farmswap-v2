@@ -29,7 +29,7 @@ class ItemDetailScreen extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
-                      "assets/images/listing/item.png",
+                      "assets/images/dummy/guyabano.jpg",
                     ),
                   ),
                 ),

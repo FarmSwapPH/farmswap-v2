@@ -11,6 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../main.dart';
 import '../../../common_widgets/input/farmswap_searchbar.dart';
 import '../../../constants/typography.dart';
 import '../../listing/presentation/list_item_card.dart';
@@ -33,6 +34,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     // Sign out the user.
     await googleSignIn.signOut();
     await FirebaseAuth.instance.signOut();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+
+    super.initState();
   }
 
   @override

@@ -39,7 +39,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Forgot password?", height: height),
+                      screenTitle(
+                        value: "Forgot password?",
+                      ),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:

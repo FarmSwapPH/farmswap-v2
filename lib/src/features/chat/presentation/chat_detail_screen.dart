@@ -36,7 +36,9 @@ class ChatDetailScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Chat", height: height),
+                      screenTitle(
+                        value: "Chat",
+                      ),
                       SizedBox(height: height * 0.024),
                       Container(
                         height: height * 0.089,

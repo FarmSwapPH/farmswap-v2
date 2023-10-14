@@ -37,7 +37,9 @@ class ChatScreen extends StatelessWidget {
                     children: [
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
-                      screenTitle(value: "Chat", height: height),
+                      screenTitle(
+                        value: "Chat",
+                      ),
                       SizedBox(height: height * 0.024),
                       ChatListCard(
                         height: height,

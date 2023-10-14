@@ -1,18 +1,45 @@
-import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
-import 'package:farmswap_v2/src/features/authentication/presentation/upload_profile_photo_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:io';
 
+import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/set_location_screen.dart';
+import 'package:farmswap_v2/src/providers/user/user_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:cross_file_image/cross_file_image.dart';
+import 'package:provider/provider.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
 
-class UploadPhotoScreen extends StatelessWidget {
+class UploadPhotoScreen extends StatefulWidget {
   const UploadPhotoScreen({super.key});
 
+  @override
+  State<UploadPhotoScreen> createState() => _UploadPhotoScreenState();
+}
+
+class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final ImagePicker picker = ImagePicker();
+    XFile? returnedImage;
+
+    var profile = context.read<UserProvider>();
+    var watchProfile = context.watch<UserProvider>();
+
+    Future _pickImageFromGallery() async {
+      returnedImage = await picker.pickImage(source: ImageSource.gallery);
+      profile.setProfilePhoto = XFile(returnedImage!.path);
+    }
+
+    Future _pickImageFromCamera() async {
+      returnedImage = await picker.pickImage(source: ImageSource.camera);
+      profile.setProfilePhoto = XFile(returnedImage!.path);
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -38,31 +65,86 @@ class UploadPhotoScreen extends StatelessWidget {
                       const FarmSwapBackArrowButton(),
                       SizedBox(height: height * 0.024),
                       screenTitle(
-                          value: "Upload Your Photo\nProfile", height: height),
+                        value: "Upload Your Photo\nProfile",
+                      ),
                       SizedBox(height: height * 0.024),
                       baseText(
                         value:
                             "This data will be displayed in your\naccount profile for security",
                       ),
                       SizedBox(height: height * 0.024),
-                      CustomPicturePicker(
-                        height: height,
-                        width: width,
-                        imagePath: "assets/svg/upload photo/Gallery.svg",
-                        title: 'From Gallery',
-                      ),
-                      SizedBox(height: height * 0.024),
-                      CustomPicturePicker(
-                        height: height,
-                        width: width,
-                        imagePath: "assets/svg/upload photo/camera.svg",
-                        title: 'From Camera',
-                      ),
+                      watchProfile.profilePhoto != null
+                          ? Center(
+                              child: Container(
+                                height: 238.h,
+                                width: 245.w,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: XFileImage(
+                                      watchProfile.profilePhoto as XFile,
+                                    ),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.r),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 10,
+                                      right: 11,
+                                      child: IconButton(
+                                        onPressed: () {
+                                          profile.setProfilePhotoNull();
+                                        },
+                                        icon: const Icon(Icons.close),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          : Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    _pickImageFromGallery();
+                                  },
+                                  child: CustomPicturePicker(
+                                    height: height,
+                                    width: width,
+                                    imagePath:
+                                        "assets/svg/upload photo/Gallery.svg",
+                                    title: 'From Gallery',
+                                  ),
+                                ),
+                                SizedBox(height: height * 0.024),
+                                GestureDetector(
+                                  onTap: () {
+                                    _pickImageFromCamera();
+                                  },
+                                  child: CustomPicturePicker(
+                                    height: height,
+                                    width: width,
+                                    imagePath:
+                                        "assets/svg/upload photo/camera.svg",
+                                    title: 'From Camera',
+                                  ),
+                                ),
+                              ],
+                            ),
                       const Spacer(),
                       Center(
                         child: FarmSwapPrimaryButton(
                           buttonTitle: "Next",
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SetLocationScreen(),
+                              ),
+                            );
+                          },
+                          isEnabled: watchProfile.profilePhoto != null,
                         ),
                       ),
                     ],
