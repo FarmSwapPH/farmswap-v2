@@ -22,7 +22,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
-        ChangeNotifierProvider(create: (context) => ChosenProvider())
+        ChangeNotifierProvider(create: (context) => PaymentChosenProvider()),
       ],
       child: const MyApp(),
     ),

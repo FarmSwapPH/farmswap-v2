@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +13,7 @@ class FarmSwapTextField extends StatefulWidget {
   bool isPassword;
   bool isNumber;
   final TextEditingController controller;
+  final validator;
 
   FarmSwapTextField({
     super.key,
@@ -23,6 +22,7 @@ class FarmSwapTextField extends StatefulWidget {
     this.isPassword = false,
     this.isNumber = false,
     required this.controller,
+    required this.validator,
   });
 
   @override
@@ -31,6 +31,8 @@ class FarmSwapTextField extends StatefulWidget {
 
 class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
   bool? viewPassword = false;
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -39,15 +41,15 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
           selectionColor: FarmSwapGreen.lightGreenHover,
         ),
       ),
-      child: TextField(
+      child: TextFormField(
         controller: widget.controller,
-
+        validator: widget.validator,
         cursorColor: FarmSwapGreen.normalGreen,
         obscureText: viewPassword! ? false : widget.isPassword,
         keyboardType:
             widget.isNumber == true ? TextInputType.number : TextInputType.text,
         // onChanged: (value) => {widget.onPress(value)},
-        selectionHeightStyle: BoxHeightStyle.includeLineSpacingBottom,
+
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 20, horizontal: 30),

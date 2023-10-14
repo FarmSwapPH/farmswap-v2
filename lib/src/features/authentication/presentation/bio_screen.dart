@@ -20,6 +20,22 @@ class _BioScreenState extends State<BioScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
+  final theKey = GlobalKey<FormState>();
+
+  bool isValidFirstName(String firstName) {
+    final RegExp regex = RegExp(r"^[a-zA-Z]{2,25}(?: [a-zA-Z]{2,25}){0,2}$");
+    return regex.hasMatch(firstName);
+  }
+
+  bool isValidLastName(String lastName) {
+    final RegExp regex = RegExp(r"^[a-zA-Z]{2,25}$");
+    return regex.hasMatch(lastName);
+  }
+
+  bool isValidPhilippineMobileNumber(String mobileNumber) {
+    final RegExp regex = RegExp(r"^09[0-9]{9}$");
+    return regex.hasMatch(mobileNumber);
+  }
 
   Future initValues() async {
     var user = context.read<UserProvider>();
@@ -98,79 +114,120 @@ class _BioScreenState extends State<BioScreen> {
               Positioned(
                 child: Container(
                   padding: const EdgeInsets.all(25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const FarmSwapBackArrowButton(),
-                      SizedBox(height: 20.h),
-                      screenTitle(
-                        value: "Fill in your bio to get\nstarted",
-                      ),
-                      SizedBox(height: 20.h),
-                      baseText(
-                        value:
-                            "This data will be displayed in your\naccount profile for security",
-                      ),
-                      SizedBox(height: 20.h),
-                      Container(
-                        decoration: const BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(
-                                  90, 108, 234, 0.05), // Color with opacity
-                              blurRadius: 50.0, // Blur radius
-                            ),
-                          ],
+                  child: Form(
+                    key: theKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const FarmSwapBackArrowButton(),
+                        SizedBox(height: 20.h),
+                        screenTitle(
+                          value: "Fill in your bio to get\nstarted",
                         ),
-                        child: FarmSwapTextField(
-                          hintText: 'First Name',
-                          controller: firstNameController,
+                        SizedBox(height: 20.h),
+                        baseText(
+                          value:
+                              "This data will be displayed in your\naccount profile for security",
                         ),
-                      ),
-                      SizedBox(height: 20.h),
-                      Container(
-                        decoration: const BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(
-                                  90, 108, 234, 0.05), // Color with opacity
-                              blurRadius: 50.0, // Blur radius
-                            ),
-                          ],
+                        SizedBox(height: 20.h),
+                        Container(
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(
+                                    90, 108, 234, 0.05), // Color with opacity
+                                blurRadius: 50.0, // Blur radius
+                              ),
+                            ],
+                          ),
+                          child: FarmSwapTextField(
+                            hintText: 'First Name',
+                            controller: firstNameController,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter a value';
+                              } else if (value.length < 2) {
+                                return 'Value must be at least 2 characters long';
+                              } else if (!isValidFirstName(
+                                  firstNameController.text.trim())) {
+                                return 'Not a valid first name!';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
                         ),
-                        child: FarmSwapTextField(
-                          hintText: 'Last Name',
-                          controller: lastNameController,
+                        SizedBox(height: 20.h),
+                        Container(
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(
+                                    90, 108, 234, 0.05), // Color with opacity
+                                blurRadius: 50.0, // Blur radius
+                              ),
+                            ],
+                          ),
+                          child: FarmSwapTextField(
+                            hintText: 'Last Name',
+                            controller: lastNameController,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter a value';
+                              } else if (value.length < 2) {
+                                return 'Value must be at least 2 characters long';
+                              } else if (!isValidLastName(
+                                  lastNameController.text.trim())) {
+                                return 'Not a valid last name!';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 20.h),
-                      Container(
-                        decoration: const BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(
-                                  90, 108, 234, 0.05), // Color with opacity
-                              blurRadius: 50.0, // Blur radius
-                            ),
-                          ],
+                        SizedBox(height: 20.h),
+                        Container(
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(
+                                    90, 108, 234, 0.05), // Color with opacity
+                                blurRadius: 50.0, // Blur radius
+                              ),
+                            ],
+                          ),
+                          child: FarmSwapTextField(
+                            hintText: 'Mobile Number',
+                            controller: mobileNumberController,
+                            isNumber: true,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter a value';
+                              } else if (value.length < 3) {
+                                return 'Value must be at least 3 characters long';
+                              } else if (!isValidPhilippineMobileNumber(
+                                  mobileNumberController.text.trim())) {
+                                return 'Not a valid PH mobile number.';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
                         ),
-                        child: FarmSwapTextField(
-                          hintText: 'Mobile Number',
-                          controller: mobileNumberController,
-                          isNumber: true,
+                        const Spacer(),
+                        Center(
+                          child: FarmSwapPrimaryButton(
+                            isEnabled: true,
+                            buttonTitle: "Next",
+                            onPress: () {
+                              if (theKey.currentState!.validate()) {
+                                fillBio();
+                              }
+                            },
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      Center(
-                        child: FarmSwapPrimaryButton(
-                          isEnabled: true,
-                          buttonTitle: "Next",
-                          onPress: () {
-                            fillBio();
-                          },
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -76,10 +76,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                    "assets/images/png/farmer.png",
-                                  ),
+                                CircleAvatar(
+                                  backgroundImage: FirebaseAuth
+                                              .instance.currentUser!.photoURL !=
+                                          null
+                                      ? NetworkImage(
+                                          FirebaseAuth.instance.currentUser!
+                                              .photoURL as String,
+                                        ) as ImageProvider
+                                      : const AssetImage(
+                                          "assets/images/png/farmer.png"),
                                 ),
                                 SizedBox(
                                   width: 5.w,
@@ -94,9 +100,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Row(
                                       children: [
                                         poppinsText(
-                                          value: context
-                                              .watch<UserProvider>()
-                                              .firstName,
+                                          value: FirebaseAuth.instance
+                                                  .currentUser!.displayName ??
+                                              "User",
                                           // value: user.email ?? "",
                                           size: 14.sp,
                                           isBold: true,

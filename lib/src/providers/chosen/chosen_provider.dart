@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ChosenProvider extends ChangeNotifier {
+class PaymentChosenProvider extends ChangeNotifier {
   bool _gcash = false;
   bool _maya = false;
   bool _gpay = false;
