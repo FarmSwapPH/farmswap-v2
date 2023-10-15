@@ -92,8 +92,9 @@ class ChooseUserTypeScreen extends StatelessWidget {
       try {
         final loggedinUserID = authInstance.currentUser;
         final db = firestoreInstance;
-
-        final customerInstance = db.collection("CustomerUsers");
+        String collectionToSave =
+            userInstance.isFarmer == true ? "FarmerUsers" : "CustomerUsers";
+        final customerInstance = db.collection(collectionToSave);
 
         final dataToInsert = <String, dynamic>{
           "address": userInstance.address,
