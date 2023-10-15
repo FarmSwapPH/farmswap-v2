@@ -70,7 +70,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
     }
 
     Future createUserAndSaveToFirestore() async {
-      await showDialog(
+      showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => const Center(

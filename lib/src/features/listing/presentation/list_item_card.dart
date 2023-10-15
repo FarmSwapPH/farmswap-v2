@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/colors.dart';
@@ -35,17 +36,17 @@ class ListItemCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(6),
-        width: 150 / 375 * width,
-        constraints: const BoxConstraints(
-          maxWidth: 200,
-          minWidth: 150,
-          minHeight: 200,
+        padding: EdgeInsets.all(6.w),
+        width: 150.w,
+        constraints: BoxConstraints(
+          maxWidth: 200.w,
+          minWidth: 150.w,
+          minHeight: 200.h,
         ),
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           shadows: const [
             BoxShadow(
@@ -60,7 +61,7 @@ class ListItemCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 120 / 812 * height,
+              height: 120.h,
               child: Stack(
                 children: [
                   Positioned.fill(
@@ -72,7 +73,7 @@ class ListItemCard extends StatelessWidget {
                           ),
                           fit: BoxFit.cover,
                         ),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                   ),
@@ -82,9 +83,9 @@ class ListItemCard extends StatelessWidget {
                     child: Container(
                       // width: 28,
                       // height: 10,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 2,
-                        horizontal: 5,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 2.w,
+                        horizontal: 5.h,
                       ),
                       decoration: ShapeDecoration(
                         color: const Color(0xFF14BE77),
@@ -101,7 +102,7 @@ class ListItemCard extends StatelessWidget {
                       ),
                       child: poppinsText(
                         value: promoLabel,
-                        size: 8 / 812 * height,
+                        size: 8.sp,
                         color: Colors.white,
                       ),
                     ),
@@ -110,61 +111,61 @@ class ListItemCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10 / 812 * height,
+              height: 10.h,
             ),
             SizedBox(
-              width: 96,
+              width: 96.w,
               child: poppinsText(
                 value: productName,
-                size: 12 / 812 * height,
+                size: 12.sp,
               ),
             ),
             SizedBox(
-              height: 10 / 812 * height,
+              height: 10.h,
             ),
             poppinsText(
               value: '$productDistance km | ⭐ $productRating ($totalReviews)',
-              size: 10 / 812 * height,
+              size: 10.sp,
               color: const Color(0xFF5F5D6B),
             ),
             SizedBox(
-              height: 10 / 812 * height,
+              height: 10.sp,
             ),
             Row(
               children: [
                 poppinsText(
                   value: productPrice,
-                  size: 14 / 812 * height,
+                  size: 14.sp,
                   isBold: true,
                   color: FarmSwapGreen.normalGreen,
                 ),
-                const SizedBox(
-                  width: 3,
+                SizedBox(
+                  width: 3.w,
                 ),
                 poppinsText(
                   value: "|",
-                  size: 10 / 812 * height,
+                  size: 10.h,
                   color: const Color(0xFF5F5D6B),
                 ),
-                const SizedBox(
-                  width: 3,
+                SizedBox(
+                  width: 3.w,
                 ),
                 SizedBox(
                   child: Align(
                     child: SvgPicture.asset(
-                      height: 15,
-                      width: 15,
+                      height: 15.h,
+                      width: 15.w,
                       "assets/svg/dashboard/delivery icon.svg",
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 3,
+                SizedBox(
+                  width: 3.w,
                 ),
                 poppinsText(
                   value: "₱20.00",
-                  size: 10 / 812 * height,
+                  size: 10.sp,
                   color: const Color(0xFF5F5D6B),
                 ),
               ],
