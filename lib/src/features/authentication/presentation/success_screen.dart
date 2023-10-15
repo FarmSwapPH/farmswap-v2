@@ -50,6 +50,22 @@ class _SuccessScreenState extends State<SuccessScreen> {
     );
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        // User is signed in
+        navigatorKey.currentState!.pushReplacement(
+          MaterialPageRoute(builder: (context) => const DashboardScreen()),
+        );
+      } else {
+        // User is not signed in
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Incorrect Credentials'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    });
   }
 
   @override
