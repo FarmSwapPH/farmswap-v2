@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../main.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../../constants/typography.dart';
@@ -69,6 +70,13 @@ class ChooseUserTypeScreen extends StatelessWidget {
     }
 
     Future createUserAndSaveToFirestore() async {
+      await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
       final uploadedProfilePhoto = await uploadImage();
       await authInstance.createUserWithEmailAndPassword(
         email: userInstance.email,
@@ -77,6 +85,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
       await authInstance.currentUser!.updateDisplayName(
           "${userInstance.firstName} ${userInstance.lastName}");
       await authInstance.currentUser!.updatePhotoURL(uploadedProfilePhoto);
+
       final userCreds = await signInUser();
       userCreds.user!.sendEmailVerification();
 
@@ -106,6 +115,9 @@ class ChooseUserTypeScreen extends StatelessWidget {
         };
 
         await customerInstance.add(dataToInsert);
+        navigatorKey.currentState!.pushReplacement(
+          MaterialPageRoute(builder: (context) => SuccessScreen()),
+        );
       } catch (e) {
         print(e);
       }
@@ -232,20 +244,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
                           // ignore: unnecessary_null_comparison
                           isEnabled: isFarmer != null,
                           onPress: () {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (context) => const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            );
                             createUserAndSaveToFirestore();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SuccessScreen(),
-                              ),
-                            );
                           },
                         ),
                       ),

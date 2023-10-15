@@ -83,7 +83,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                                     image: XFileImage(
                                       watchProfile.profilePhoto as XFile,
                                     ),
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.cover,
                                   ),
                                   borderRadius: BorderRadius.circular(15.r),
                                 ),

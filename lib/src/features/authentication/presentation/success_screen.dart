@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../main.dart';
 import '../../../common_widgets/farm_swap_buttons/farmswap_primary_button.dart';
 import '../../dashboard/presentation/dashboard_screen.dart';
 
@@ -37,6 +39,18 @@ class _SuccessScreenState extends State<SuccessScreen> {
   //   super.initState();
   //   nextScreen();
   // }
+
+  Future goToDashboard() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +117,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                           // ignore: unnecessary_null_comparison
                           isEnabled: true,
                           onPress: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DashboardScreen(),
-                              ),
-                            );
+                            goToDashboard();
                           },
                         ),
                       ),

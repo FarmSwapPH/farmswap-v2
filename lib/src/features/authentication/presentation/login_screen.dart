@@ -30,6 +30,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  bool isValidEmail(String email) {
+    final RegExp regex = RegExp(
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+    return regex.hasMatch(email);
+  }
 
   Future<UserCredential> _signInWithFacebook() async {
     showDialog(
@@ -159,96 +166,120 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 20.h),
-              Column(
-                children: [
-                  farmSwapFont(text: "Login To Your Account", size: 20.sp),
-                  SizedBox(height: 20.h),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: FarmSwapTextField(
-                      hintText: "Email",
-                      inputIcon: "assets/svg/auth/Message.svg",
-                      controller: emailController,
-                      validator: null,
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    farmSwapFont(text: "Login To Your Account", size: 20.sp),
+                    SizedBox(height: 20.h),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: FarmSwapTextField(
+                        hintText: "Email",
+                        inputIcon: "assets/svg/auth/Message.svg",
+                        controller: emailController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter a value';
+                          } else if (value.length < 5) {
+                            return 'Value must be at least 5 characters long';
+                          } else if (!isValidEmail(
+                              emailController.text.trim())) {
+                            return 'This is an invalid email!';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: FarmSwapTextField(
-                      hintText: "Password",
-                      controller: passwordController,
-                      inputIcon: "assets/svg/auth/Lock.svg",
-                      isPassword: true,
-                      validator: null,
+                    SizedBox(height: 20.h),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: FarmSwapTextField(
+                        hintText: "Password",
+                        controller: passwordController,
+                        inputIcon: "assets/svg/auth/Lock.svg",
+                        isPassword: true,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter a value';
+                          } else if (value.length < 5) {
+                            return 'Value must be at least 5 characters long';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        SizedBox(height: 35.h),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegisterScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'Create Account',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                color: const Color(0xFF53E78B),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                                // decoration: TextDecoration.underline,
-                                decorationStyle: TextDecorationStyle.solid,
-                                decorationColor: const Color(0xFF53E78B),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          SizedBox(height: 35.h),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Create Account',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: const Color(0xFF53E78B),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  // decoration: TextDecoration.underline,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  decorationColor: const Color(0xFF53E78B),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ForgotPasswordScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'Forgot Your Password?',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                color: const Color(0xFF53E78B),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                                // decoration: TextDecoration.underline,
-                                decorationStyle: TextDecorationStyle.solid,
-                                decorationColor: const Color(0xFF53E78B),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPasswordScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Forgot Your Password?',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: const Color(0xFF53E78B),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  // decoration: TextDecoration.underline,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  decorationColor: const Color(0xFF53E78B),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
               SizedBox(height: 20.h),
               FarmSwapPrimaryButton(
                 isEnabled: true,
                 buttonTitle: "Login",
                 onPress: () {
-                  _signIn();
+                  if (formKey.currentState!.validate()) {
+                    _signIn();
+                  }
                 },
               ),
               Container(

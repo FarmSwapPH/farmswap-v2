@@ -74,8 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       initializeUser();
 
-      // navigatorKey.currentState!.popUntil((route) => route.isFirst);
-
+      navigatorKey.currentState!.popUntil((route) => route.isFirst);
       navigatorKey.currentState!.pushReplacement(
         MaterialPageRoute(builder: (context) => const BioScreen()),
       );
