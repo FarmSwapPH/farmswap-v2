@@ -3,14 +3,14 @@ import 'package:farmswap_v2/src/constants/colors.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
-import 'package:farmswap_v2/src/providers/user/user_provider.dart';
+// import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 import '../../../../main.dart';
 import '../../../common_widgets/input/farmswap_searchbar.dart';
@@ -56,8 +56,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -357,7 +355,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           SizedBox(
                             height: 25.h,
                           ),
-                          CircleCategory(height: height),
+                          const CircleCategory(),
                           SizedBox(
                             height: 20.h,
                           ),
@@ -365,8 +363,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Chinese Kangkong",
                                 productImage:
                                     "assets/images/category/pechay.jpg",
@@ -388,8 +384,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 width: 20.w,
                               ),
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Green Mango",
                                 productImage:
                                     "assets/images/category/green mangoi.jpg",
@@ -409,8 +403,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Bisayang Kasoy",
                                 productImage:
                                     "assets/images/category/kasoy.jpg",
@@ -423,8 +415,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 width: 20,
                               ),
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Chinese Talong",
                                 productImage:
                                     "assets/images/category/chinese eggplant.jpg",
@@ -438,14 +428,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           SizedBox(
                             height: 20.h,
                           ),
-                          FarmSwapSectionTitle(
-                            height: height,
+                          const FarmSwapSectionTitle(
                             title: 'Recommended 😍',
                           ),
                           SizedBox(
                             height: 20.h,
                           ),
-                          ScrollableRecommendedBadges(height: height),
+                          const ScrollableRecommendedBadges(),
                           SizedBox(
                             height: 20.h,
                           ),
@@ -453,8 +442,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Chinese Kangkong",
                                 productImage:
                                     "assets/images/category/pechay.jpg",
@@ -467,8 +454,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 width: 20.w,
                               ),
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Green Mango",
                                 productImage:
                                     "assets/images/category/green mangoi.jpg",
@@ -484,8 +469,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           SizedBox(
                             height: 20.h,
                           ),
-                          FarmSwapSectionTitle(
-                            height: height,
+                          const FarmSwapSectionTitle(
                             title: 'For Swaps 🤝',
                           ),
                           SizedBox(
@@ -496,8 +480,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: Row(
                               children: [
                                 HorizontalListItem(
-                                  width: width,
-                                  height: height,
                                   productName: "Green Okra",
                                   productImage: "assets/images/dummy/okra.jpg",
                                   productPrice: "₱ 50.00",
@@ -509,8 +491,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   width: 20.w,
                                 ),
                                 HorizontalListItem(
-                                  width: width,
-                                  height: height,
                                   productName: "Siling Demonyo",
                                   productImage:
                                       "assets/images/category/chili.jpg",
@@ -529,8 +509,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Chinese Kangkong",
                                 productImage:
                                     "assets/images/category/pechay.jpg",
@@ -543,8 +521,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 width: 20.w,
                               ),
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Green Mango",
                                 productImage:
                                     "assets/images/category/green mangoi.jpg",
@@ -564,8 +540,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Chinese Kangkong",
                                 productImage:
                                     "assets/images/category/pechay.jpg",
@@ -578,8 +552,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 width: 20.w,
                               ),
                               ListItemCard(
-                                height: height,
-                                width: width,
                                 productName: "Green Mango",
                                 productImage:
                                     "assets/images/category/green mangoi.jpg",
@@ -604,10 +576,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       bottomNavigationBar: const BottomNav(),
       drawer: Drawer(
+        backgroundColor: FarmSwapGreen.normalGreen,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-            child: ListView(
+            padding: EdgeInsets.symmetric(
+              vertical: 5.h,
+            ),
+            child: Column(
               children: [
                 DrawerHeader(
                   child: Row(
@@ -631,21 +606,120 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           poppinsText(
-                            value: FirebaseAuth
-                                    .instance.currentUser!.displayName ??
-                                "Guest",
-                            size: 14.sp,
-                            isBold: true,
-                          ),
+                              value: FirebaseAuth
+                                      .instance.currentUser!.displayName ??
+                                  "Guest",
+                              size: 14.sp,
+                              isBold: true,
+                              color: Colors.white),
                           SizedBox(height: 5.h),
                           poppinsText(
-                            value: FirebaseAuth.instance.currentUser!.email
-                                .toString(),
-                            size: 12.sp,
-                          ),
+                              value: FirebaseAuth.instance.currentUser!.email
+                                  .toString(),
+                              size: 12.sp,
+                              color: FarmSwapBlack.normal),
                         ],
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                InkWell(
+                  onTap: () {},
+                  child: ListTile(
+                    iconColor: Colors.white,
+                    leading: const Icon(Icons.person_outline),
+                    title: poppinsText(
+                      value: "Account",
+                      size: 14.sp,
+                      color: Colors.white,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                InkWell(
+                  onTap: () {},
+                  child: ListTile(
+                    iconColor: Colors.white,
+                    leading: const Icon(Icons.delivery_dining_outlined),
+                    title: poppinsText(
+                      value: "Orders",
+                      size: 14.sp,
+                      color: Colors.white,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                InkWell(
+                  onTap: () {},
+                  child: ListTile(
+                    iconColor: Colors.white,
+                    leading: const Icon(Icons.payment_outlined),
+                    title: poppinsText(
+                      value: "Payment Method",
+                      size: 14.sp,
+                      color: Colors.white,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                InkWell(
+                  onTap: () {},
+                  child: ListTile(
+                    iconColor: Colors.white,
+                    leading: const Icon(Icons.location_on_outlined),
+                    title: poppinsText(
+                      value: "Address",
+                      size: 14.sp,
+                      color: Colors.white,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                InkWell(
+                  onTap: () {},
+                  child: ListTile(
+                    iconColor: Colors.white,
+                    leading: const Icon(Icons.shield_outlined),
+                    title: poppinsText(
+                      value: "Security",
+                      size: 14.sp,
+                      color: Colors.white,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: () async {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                    signOut();
+                    navigatorKey.currentState!
+                        .popUntil((route) => route.isFirst);
+                    navigatorKey.currentState!.pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                    );
+                  },
+                  child: ListTile(
+                    iconColor: Colors.white,
+                    leading: const Icon(Icons.logout),
+                    title: poppinsText(
+                      value: "Logout",
+                      size: 14.sp,
+                      color: Colors.white,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                 ),
               ],
@@ -660,10 +734,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 class CircleCategory extends StatelessWidget {
   const CircleCategory({
     super.key,
-    required this.height,
   });
-
-  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -671,32 +742,28 @@ class CircleCategory extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CategoryIcon(
-          height: height,
+        const CategoryIcon(
           imagePath: "assets/images/category/pechay.jpg",
           text: "Veggies",
         ),
         SizedBox(
           width: 20.w,
         ),
-        CategoryIcon(
-          height: height,
+        const CategoryIcon(
           imagePath: "assets/images/category/kasoy.jpg",
           text: "Fruits",
         ),
         SizedBox(
           width: 20.w,
         ),
-        CategoryIcon(
-          height: height,
+        const CategoryIcon(
           imagePath: "assets/images/category/chili.jpg",
           text: "Spices",
         ),
         SizedBox(
           width: 20.w,
         ),
-        CategoryIcon(
-          height: height,
+        const CategoryIcon(
           imagePath: "assets/images/category/nuts.jpg",
           text: "Seeds",
         ),
@@ -711,10 +778,7 @@ class CircleCategory extends StatelessWidget {
 class ScrollableRecommendedBadges extends StatelessWidget {
   const ScrollableRecommendedBadges({
     super.key,
-    required this.height,
   });
-
-  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -722,29 +786,25 @@ class ScrollableRecommendedBadges extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          RecommendBadge(
-            height: height,
+          const RecommendBadge(
             text: '✅ Fresh',
           ),
           SizedBox(
             width: 10.w,
           ),
-          OutlinedRecommendBadge(
-            height: height,
+          const OutlinedRecommendBadge(
             text: "✨ Hot Pick",
           ),
           SizedBox(
             width: 10.w,
           ),
-          OutlinedRecommendBadge(
-            height: height,
+          const OutlinedRecommendBadge(
             text: "🦐 Dried Goods",
           ),
           SizedBox(
             width: 10.h,
           ),
-          OutlinedRecommendBadge(
-            height: height,
+          const OutlinedRecommendBadge(
             text: "🤩 Highest Rated",
           ),
         ],
@@ -756,11 +816,9 @@ class ScrollableRecommendedBadges extends StatelessWidget {
 class OutlinedRecommendBadge extends StatelessWidget {
   const OutlinedRecommendBadge({
     super.key,
-    required this.height,
     required this.text,
   });
 
-  final double height;
   final String text;
 
   @override
@@ -798,11 +856,9 @@ class OutlinedRecommendBadge extends StatelessWidget {
 class RecommendBadge extends StatelessWidget {
   const RecommendBadge({
     super.key,
-    required this.height,
     required this.text,
   });
 
-  final double height;
   final String text;
 
   @override
@@ -839,12 +895,10 @@ class RecommendBadge extends StatelessWidget {
 class CategoryIcon extends StatelessWidget {
   const CategoryIcon({
     super.key,
-    required this.height,
     required this.imagePath,
     required this.text,
   });
 
-  final double height;
   final String imagePath;
   final String text;
 

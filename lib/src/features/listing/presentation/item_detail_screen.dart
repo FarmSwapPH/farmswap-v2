@@ -200,7 +200,6 @@ class ItemDetailScreen extends StatelessWidget {
                       height: 20 / 812 * height,
                     ),
                     FarmSwapSectionTitle(
-                      height: height,
                       title: "For You",
                     ),
                     SizedBox(
@@ -209,8 +208,6 @@ class ItemDetailScreen extends StatelessWidget {
                     Row(
                       children: [
                         ListItemCard(
-                          height: height,
-                          width: width,
                           productName: "Bisayang Kasoy",
                           productImage: "assets/images/category/kasoy.jpg",
                           productPrice: "₱30.00",
@@ -222,8 +219,6 @@ class ItemDetailScreen extends StatelessWidget {
                           width: 20,
                         ),
                         ListItemCard(
-                          height: height,
-                          width: width,
                           productName: "Chinese Talong",
                           productImage:
                               "assets/images/category/chinese eggplant.jpg",
