@@ -51,7 +51,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
     }
 
     Future<UserCredential> signInUser() async {
-      late final userCredential;
+      late final UserCredential userCredential;
       try {
         userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: userInstance.email,

@@ -94,12 +94,10 @@ Text poppinsText(
 class FarmSwapSectionTitle extends StatelessWidget {
   const FarmSwapSectionTitle({
     super.key,
-    required this.height,
     required this.title,
     this.onPress,
   });
 
-  final double height;
   final String title;
   final VoidCallback? onPress;
 

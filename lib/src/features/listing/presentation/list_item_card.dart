@@ -16,8 +16,6 @@ class ListItemCard extends StatelessWidget {
     required this.totalReviews,
     this.promoLabel = "PROMO",
     this.onTap,
-    required this.height,
-    required this.width,
   });
 
   final String productName;
@@ -27,8 +25,6 @@ class ListItemCard extends StatelessWidget {
   final String productDistance;
   final String totalReviews;
   String promoLabel;
-  final double height;
-  final double width;
   VoidCallback? onTap;
 
   @override

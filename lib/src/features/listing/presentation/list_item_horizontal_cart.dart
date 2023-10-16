@@ -8,8 +8,6 @@ import '../../../constants/typography.dart';
 class HorizontalListItem extends StatelessWidget {
   HorizontalListItem({
     super.key,
-    required this.width,
-    required this.height,
     required this.productName,
     required this.productImage,
     required this.productPrice,
@@ -19,8 +17,6 @@ class HorizontalListItem extends StatelessWidget {
     this.promoLabel = "FOR SWAP ONLY",
   });
 
-  final double width;
-  final double height;
   final String productName;
   final String productImage;
   final String productPrice;
