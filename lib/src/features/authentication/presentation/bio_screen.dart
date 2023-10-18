@@ -3,6 +3,7 @@ import 'package:farmswap_v2/src/common_widgets/input/farmswap_text_field.dart';
 import 'package:farmswap_v2/src/constants/typography.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/birth_info_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/payment_method_screen.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/upload_photo_screen.dart';
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -93,7 +94,7 @@ class _BioScreenState extends State<BioScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: ((context) => const BirthInfoScreen()),
+          builder: ((context) => const UploadPhotoScreen()),
         ),
       );
     }
