@@ -50,6 +50,44 @@ class ChooseUserTypeScreen extends StatelessWidget {
       return imageUrl;
     }
 
+    Future<String> uploadFrontID() async {
+      late String imageUrl;
+      File theFile = File(userInstance.frontId!.path);
+      try {
+        final fileName = userInstance.frontId!.path.split('/').last;
+        final username = userInstance.username;
+        final storageRef = storage.ref().child('$username/$fileName');
+        final uploadTask = storageRef.putFile(theFile);
+
+        await uploadTask.whenComplete(() async {
+          imageUrl = await storageRef.getDownloadURL();
+        });
+      } catch (e) {
+        print(e);
+      }
+
+      return imageUrl;
+    }
+
+    Future<String> uploadBackID() async {
+      late String imageUrl;
+      File theFile = File(userInstance.backID!.path);
+      try {
+        final fileName = userInstance.backID!.path.split('/').last;
+        final username = userInstance.username;
+        final storageRef = storage.ref().child('$username/$fileName');
+        final uploadTask = storageRef.putFile(theFile);
+
+        await uploadTask.whenComplete(() async {
+          imageUrl = await storageRef.getDownloadURL();
+        });
+      } catch (e) {
+        print(e);
+      }
+
+      return imageUrl;
+    }
+
     Future<UserCredential> signInUser() async {
       late final UserCredential userCredential;
       try {
@@ -78,6 +116,8 @@ class ChooseUserTypeScreen extends StatelessWidget {
         ),
       );
       final uploadedProfilePhoto = await uploadImage();
+      final uploadedFrontId = await uploadFrontID();
+      final uploadedBackId = await uploadBackID();
       await authInstance.createUserWithEmailAndPassword(
         email: userInstance.email,
         password: userInstance.password,
@@ -98,8 +138,8 @@ class ChooseUserTypeScreen extends StatelessWidget {
 
         final dataToInsert = <String, dynamic>{
           "address": userInstance.address,
-          // "birthDate": "11/22/1994",
-          // "birthPlace": "Bohol",
+          "birthDate": userInstance.birthDate,
+          "birthPlace": userInstance.birthplace,
           "email": loggedinUserID!.email,
           "userId": loggedinUserID.uid,
           "userRole": userInstance.isFarmer == true ? "farmer" : "consumer",
@@ -113,6 +153,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
           "profileUrl": uploadedProfilePhoto,
           "isEmailConfirmed": false,
           "paymentMethod": paymentMethod.gcash != null ? "gcash" : "maya",
+          "docRequirements": [uploadedFrontId, uploadedBackId]
         };
 
         await customerInstance.add(dataToInsert);

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:farmswap_v2/src/common_widgets/farm_swap_buttons/farmswap_back_arrow_button.dart';
+import 'package:farmswap_v2/src/features/authentication/presentation/birth_info_screen.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/set_location_screen.dart';
 import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +141,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const SetLocationScreen(),
+                                builder: (context) => const BirthInfoScreen(),
                               ),
                             );
                           },
