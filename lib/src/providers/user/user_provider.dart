@@ -13,7 +13,7 @@ class UserProvider with ChangeNotifier {
   String? _birthDate;
   String? _birthPlace;
   String? _contactNumber;
-  List? _docRequirements;
+
   String? _email;
   String? _firstName;
   String? _lastName;
@@ -25,6 +25,8 @@ class UserProvider with ChangeNotifier {
   bool _isFarmer = false;
   String? _password;
   XFile? _profilePhoto;
+  XFile? _frontId;
+  XFile? _backId;
 
 // email
   set setEmail(String email) {
@@ -99,4 +101,42 @@ class UserProvider with ChangeNotifier {
   }
 
   bool get isFarmer => _isFarmer;
+
+  set setBirthDate(String date) {
+    _birthDate = date;
+    notifyListeners();
+  }
+
+  String? get birthDate => _birthDate;
+
+  set setBirthPlace(String place) {
+    _birthPlace = place;
+    notifyListeners();
+  }
+
+  String? get birthplace => _birthPlace;
+
+  set setFrontId(XFile photo) {
+    _frontId = photo;
+    notifyListeners();
+  }
+
+  void setFrontIdToNull() {
+    _frontId = null;
+    notifyListeners();
+  }
+
+  XFile? get frontId => _frontId;
+
+  set setBackId(XFile photo) {
+    _backId = photo;
+    notifyListeners();
+  }
+
+  void setBackIdToNull() {
+    _backId = null;
+    notifyListeners();
+  }
+
+  XFile? get backID => _backId;
 }
