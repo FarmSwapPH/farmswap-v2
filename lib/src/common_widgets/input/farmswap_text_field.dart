@@ -10,6 +10,7 @@ typedef OnTextChangedCallback = void Function(String value);
 class FarmSwapTextField extends StatefulWidget {
   final String hintText;
   String? inputIcon;
+  bool isReadOnly;
   bool isPassword;
   bool isNumber;
   final TextEditingController controller;
@@ -21,6 +22,7 @@ class FarmSwapTextField extends StatefulWidget {
     this.inputIcon,
     this.isPassword = false,
     this.isNumber = false,
+    this.isReadOnly = false,
     required this.controller,
     required this.validator,
   });
@@ -42,6 +44,7 @@ class _FarmSwapTextFieldState extends State<FarmSwapTextField> {
         ),
       ),
       child: TextFormField(
+        readOnly: widget.isReadOnly,
         controller: widget.controller,
         validator: widget.validator,
         cursorColor: FarmSwapGreen.normalGreen,
