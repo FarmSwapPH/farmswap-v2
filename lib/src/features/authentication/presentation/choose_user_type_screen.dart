@@ -154,6 +154,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
           "isEmailConfirmed": false,
           "paymentMethod": paymentMethod.gcash != null ? "gcash" : "maya",
           "docRequirements": [uploadedFrontId, uploadedBackId]
+          "isOnline": false,
         };
 
         await customerInstance.add(dataToInsert);
