@@ -153,7 +153,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
           "profileUrl": uploadedProfilePhoto,
           "isEmailConfirmed": false,
           "paymentMethod": paymentMethod.gcash != null ? "gcash" : "maya",
-          "docRequirements": [uploadedFrontId, uploadedBackId]
+          "docRequirements": [uploadedFrontId, uploadedBackId],
           "isOnline": false,
         };
 
