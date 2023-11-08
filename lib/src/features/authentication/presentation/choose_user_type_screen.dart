@@ -56,7 +56,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
       try {
         final fileName = userInstance.frontId!.path.split('/').last;
         final username = userInstance.username;
-        final storageRef = storage.ref().child('$username/$fileName');
+        final storageRef = storage.ref().child('userDocs/$username/$fileName');
         final uploadTask = storageRef.putFile(theFile);
 
         await uploadTask.whenComplete(() async {
@@ -75,7 +75,7 @@ class ChooseUserTypeScreen extends StatelessWidget {
       try {
         final fileName = userInstance.backID!.path.split('/').last;
         final username = userInstance.username;
-        final storageRef = storage.ref().child('$username/$fileName');
+        final storageRef = storage.ref().child('userDocs/$username/$fileName');
         final uploadTask = storageRef.putFile(theFile);
 
         await uploadTask.whenComplete(() async {
@@ -153,7 +153,8 @@ class ChooseUserTypeScreen extends StatelessWidget {
           "profileUrl": uploadedProfilePhoto,
           "isEmailConfirmed": false,
           "paymentMethod": paymentMethod.gcash != null ? "gcash" : "maya",
-          "docRequirements": [uploadedFrontId, uploadedBackId]
+          "docRequirements": [uploadedFrontId, uploadedBackId],
+          "isOnline": false,
         };
 
         await customerInstance.add(dataToInsert);

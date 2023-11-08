@@ -62,7 +62,7 @@ const RESOURCES = {"assets/AssetManifest.json": "c60995964267a99d256f39c10788df9
 "assets/assets/svg/upload%2520photo/camera.svg": "ca316ea93bfc9c5624168de60c462207",
 "assets/assets/svg/upload%2520photo/Gallery.svg": "3da46f84eb223e347629504fa15d0638",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/fonts/MaterialIcons-Regular.otf": "c620c2d306073f8557d07e8062f29691",
+"assets/fonts/MaterialIcons-Regular.otf": "7550f484592ab1ff298fa9f4a9ba8d65",
 "assets/NOTICES": "59dd7572c656e6f40f7e72c7dae92525",
 "assets/packages/auth_buttons/images/default/apple.svg": "ead30544d55b2c61eb349ea5944aa4b8",
 "assets/packages/auth_buttons/images/default/email.svg": "720b2e4750311bbe2da2eec0ad4d2729",
@@ -103,9 +103,9 @@ const RESOURCES = {"assets/AssetManifest.json": "c60995964267a99d256f39c10788df9
 "icons/Icon-512.png": "03af1ed3ff45cdf9344b2fa89a9011d8",
 "icons/Icon-maskable-192.png": "2c5b1c137725c0530d447b376fa90830",
 "icons/Icon-maskable-512.png": "03af1ed3ff45cdf9344b2fa89a9011d8",
-"index.html": "3a7419f2c217f927860107870cfa7677",
-"/": "3a7419f2c217f927860107870cfa7677",
-"main.dart.js": "904cccb81e50fea479afc76ab764b759",
+"index.html": "a159670a7b3760fe9c390fc5634167c7",
+"/": "a159670a7b3760fe9c390fc5634167c7",
+"main.dart.js": "eb3625a72403bdb8957ee6c83b0b454b",
 "manifest.json": "ce9d7ca7793ced80f3d355314862f3ea",
 "version.json": "fe398669b325a78b75f1deaf82f8d860"};
 // The application shell files that are downloaded before a service worker can
