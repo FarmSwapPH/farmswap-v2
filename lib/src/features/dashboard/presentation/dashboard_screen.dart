@@ -3,6 +3,7 @@ import 'package:farmswap_v2/src/constants/colors.dart';
 import 'package:farmswap_v2/src/features/authentication/presentation/login_screen.dart';
 import 'package:farmswap_v2/src/features/dashboard/presentation/bottom_nav.dart';
 import 'package:farmswap_v2/src/features/listing/presentation/item_detail_screen.dart';
+import 'package:farmswap_v2/src/features/user/presentation/user_screen.dart';
 // import 'package:farmswap_v2/src/providers/user/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -625,7 +626,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 SizedBox(height: 5.h),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserAccountScreen(),
+                      ),
+                    );
+                  },
                   child: ListTile(
                     iconColor: Colors.white,
                     leading: const Icon(Icons.person_outline),
